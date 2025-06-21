@@ -1,6 +1,6 @@
 import React from "react"
 const ContactForm: React.FC=()=>{
-    return null
+    return(<></>)
 }
 
 export default ContactForm;
