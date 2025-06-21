@@ -1,5 +1,5 @@
 import React from "react"
-const ContactForm: React.FC=()=>{
+const ContactForm: React.FC<{}>=()=>{
     return(<></>)
 }
 
