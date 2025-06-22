@@ -1,4 +1,6 @@
 import React from "react";
+import {DotLottieReact} from '@lottiefiles/dotlottie-react';;
+
 
 const BenefitsSection: React.FC = ()=>{
     return(
@@ -8,17 +10,17 @@ const BenefitsSection: React.FC = ()=>{
   
  <div className="sm:flex items-center"> 
   <div className="card items-center justify-center p-10 sm:w-[33%]"><center>
-    <img src="https://res.cloudinary.com/anuragprasoon/image/upload/f_auto,q_auto/v1/sacred-pause-com/ip3x3ygx1ufix8bat7ym" className="w-[100px] animate-spin"/>
+    <DotLottieReact src="/Compass Animation.json" loop autoplay className="w-[140px] mb-5"/>
     <div className="text-center">You’re driven—but want depth.</div>
     </center>
   </div>
   <div className="card items-center p-10 sm:w-[33%]"><center>
-    <img src="https://res.cloudinary.com/anuragprasoon/image/upload/f_auto,q_auto/v1/sacred-pause-com/euyhpyy7y4elexomhmk9" className="w-[100px] p-[5px]"/>
+    <DotLottieReact src="/Yoga Animation.json" loop autoplay className="w-[140px] mb-5"/>
     <span className="text-center">You love impact—but crave inner space.</span>
     </center>
   </div>
   <div className="inline-block justify-center items-center p-10 sm:w-[33%]"><center>
-    <img src="https://res.cloudinary.com/anuragprasoon/image/upload/f_auto,q_auto/v1/sacred-pause-com/mmmlbfc0b0maqhdedrgq" className="w-[100px] p-[5px] "/>
+    <DotLottieReact src="/Brain Animation.json" loop autoplay className="w-[140px] mb-5"/>
     <div className="inline-block text-center">You’re ready to unplug not to escape—but to re-enter life more fully.</div>
     </center>
   </div>
