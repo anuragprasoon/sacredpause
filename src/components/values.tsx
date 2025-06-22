@@ -1,7 +1,74 @@
 import React from "react"
 
 const Value: React.FC<{}>=()=>{
-    return(<></>)
+    return(
+        <div className="flex justify-center bg-white p-10">
+
+<div className="bg-[#E8E8EB]">
+<div className="mr-[100px] text-[#171612]">
+
+<div className="urbanist  p-5 flex items-center">
+    <img className=" bg-white rounded-full w-[80px] p-5 m-3" src="https://res.cloudinary.com/anuragprasoon/image/upload/v1750478607/sacred-pause-com/auvyzswhqnr8gyncycib.svg"/>
+  	<div>
+    	<span className="text-[18px] font-semibold">Your Private Eco Sanctuary</span>
+        <p className="text-[#2E524A] text-[16px]">5 nights in a private, design forward eco-villa
+        </p>
+  	</div>
+</div>
+
+
+<div className="urbanist  p-5 flex items-center">
+    <img className=" bg-white rounded-full w-[80px] p-5 m-3" src="https://res.cloudinary.com/anuragprasoon/image/upload/v1750478607/sacred-pause-com/fzaremcj7ibj7eckjujs.svg"/>
+  	<div>
+    	<span className="text-[18px] font-semibold">Nourish with Nature’s Wisdom</span>
+        <p className="text-[#2E524A] text-[16px]">Organic, Ayurvedic-inspired meals and herbal elixirs
+        </p>
+  	</div>
+</div>
+
+<div className="urbanist  p-5 flex items-center">
+    <img className=" bg-white rounded-full w-[80px] p-5 m-3" src="https://res.cloudinary.com/anuragprasoon/image/upload/v1750478608/sacred-pause-com/fegsseogtxg6itvxhgns.svg"/>
+  	<div>
+    	<span className="text-[18px] font-semibold">Personalized Wellness Journey</span>
+        <p className="text-[#2E524A] text-[16px]">Personalized wellness consultation & integration toolkit
+        </p>
+  	</div>
+</div>
+
+</div>
+
+</div>
+
+<img className="w-[350px] absolute p-2" src="https://res.cloudinary.com/anuragprasoon/image/upload/v1750633443/sacred-pause-com/cyptm2gz8cbkyczdwgls.png"/>
+
+
+
+<div className="bg-[#2E524A] p-5">
+
+<div className="ml-[100px]">
+<div className="urbanist  p-5 flex items-center text-right">
+  	<div>
+    	<span className="text-[18px] font-semibold text-[#EBDBCB]">Daily Movement & Mindfulness</span>
+        <p className="text-[#2E524A] text-[16px] text-white">Daily yoga, breathwork & stillness practices
+        </p>
+  	</div>
+    <img className=" bg-white rounded-full w-[80px] p-5 m-3" src="https://res.cloudinary.com/anuragprasoon/image/upload/v1750478608/sacred-pause-com/fegsseogtxg6itvxhgns.svg"/>
+</div>
+
+<div className="urbanist  p-5 flex items-center text-right">
+  	<div>
+    	<span className="text-[18px] font-semibold text-[#EBDBCB]">Creative & Earth-Centered Rituals</span>
+        <p className="text-[#2E524A] text-[16px] text-white">Nature immersions, creative workshops & intentional rituals
+        </p>
+  	</div>
+    <img className=" bg-white rounded-full w-[80px] p-5 m-3" src="https://res.cloudinary.com/anuragprasoon/image/upload/v1750478607/sacred-pause-com/z4pvc4tprqzwlasayzek.svg"/>
+</div>
+</div>
+
+</div>
+
+</div>
+    )
 }
 
 export default Value;
