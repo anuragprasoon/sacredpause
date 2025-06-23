@@ -14,7 +14,7 @@ const WhyUs: React.FC=()=>{
     return(
         <div className="sm:flex  ">
 <div className="bg-black text-white sm:w-[50%] w-[100%] p-10">
-    <div className="h-[100%] items-center justify-center" data-aos="fade-right">
+    <div className="h-[100%] items-center justify-center" data-aos="fade-down">
 <span className="text-[#E4A689] text-[16px] urbanist ">WHY US</span>
 <div className="text-[30px] urbanist font-extrabold mb-[10px]">Because rest should feel beautiful</div>
 
@@ -29,7 +29,7 @@ const WhyUs: React.FC=()=>{
   </div>
 </div>
 </div>
-	<img data-aos="fade-left" src="https://res.cloudinary.com/anuragprasoon/image/upload/v1750479748/sacred-pause-com/u66lkq3ltsvpyfflngx4.png" className="sm:w-[50%] w-[100%] object-cover "/>
+	<img data-aos="fade-up" src="https://res.cloudinary.com/anuragprasoon/image/upload/v1750479748/sacred-pause-com/u66lkq3ltsvpyfflngx4.png" className="sm:w-[50%] w-[100%] object-cover "/>
 </div>
     )
 }
