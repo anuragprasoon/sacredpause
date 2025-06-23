@@ -4,6 +4,7 @@ import BenefitsSection from "@/components/benefits";
 import Hero from "@/components/hero";
 import Experience from "@/components/experience";
 import Value from "@/components/values";
+import Testimonial from "@/components/testimonials";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
     <Value/>
     <BenefitsSection/>
     <WhyUs/>
+    <Testimonial/>
     </>
   );
 }
