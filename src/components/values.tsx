@@ -10,7 +10,7 @@ const Value: React.FC<{}>=()=>{
 }, []);
 
     return(
-        <div className="sm:flex justify-center bg-white p-10">
+        <div className="sm:flex justify-center bg-white p-10 overflow-x-hidden">
             <img data-aos="fade-up" className="w-full sm:absolute p-10 sm:hidden" src="https://res.cloudinary.com/anuragprasoon/image/upload/v1750633443/sacred-pause-com/cyptm2gz8cbkyczdwgls.png"/>
 
 <div className="bg-[#E8E8EB]">

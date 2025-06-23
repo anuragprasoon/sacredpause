@@ -12,7 +12,7 @@ const Experience: React.FC<{}>=()=>{
 
     
     return(
-    <div className="w-full sm:flex bg-white text-black p-10">
+    <div className="w-full sm:flex bg-white text-black p-10 overflow-x-hidden">
         <div className="urbanist p-10 sm:w-[50%]" data-aos="fade-right">
             <div className="text-[16px] text-[#E4A689]">EXPERIENCE</div>
             <div className="text-[18px]">
