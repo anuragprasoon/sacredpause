@@ -2,7 +2,7 @@ import React from "react";
 
 const Hero: React.FC=()=>{
     return(
-        <div className="relative w-full bg-[#172525] p-10 h-full"><center>
+        <div className="relative w-full bg-[#172525] p-15"><center>
 <img className="w-full object-fit absolute left-1/2 transform -translate-x-1/2" src="https://res.cloudinary.com/anuragprasoon/image/upload/v1750478606/sacred-pause-com/u79divlpdfdksva1msbd.png"/>
 <img className="w-[400px] absolute left-1/2 transform -translate-x-1/2" src="https://res.cloudinary.com/anuragprasoon/image/upload/v1750478608/sacred-pause-com/u4cgpwqkldqykkigegzh.png"/>
 <img className="w-[400px] z-[1]" src="https://res.cloudinary.com/anuragprasoon/image/upload/v1750478607/sacred-pause-com/w1yv2coloaau8grkpegp.png"/>
