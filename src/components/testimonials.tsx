@@ -11,7 +11,7 @@ const Testimonial: React.FC<{}>=()=>{
 	<p className="text-[#2E524A]">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. className aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
     </p>
-    <span className="text-[20px] text-[#2E524A] font-bold block mt-3"> Anurag Prasoon  </span>
+    <span className="text-[20px] text-[#2E524A] font-bold  mt-3"> Anurag Prasoon  </span>
     <span className="text-[14px] text-[#2E524A] font-semibold"> Jharkhand,India </span>
 </div>
 </div>
@@ -22,7 +22,7 @@ const Testimonial: React.FC<{}>=()=>{
 	<p className="text-[#2E524A]">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. className aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
     </p>
-    <span className="text-[20px] text-[#2E524A] font-bold block mt-3"> Anurag Prasoon  </span>
+    <span className="text-[20px] text-[#2E524A] font-bold  mt-3"> Anurag Prasoon  </span>
     <span className="text-[14px] text-[#2E524A] font-semibold"> Jharkhand,India </span>
 </div>
 </div>
@@ -33,7 +33,7 @@ const Testimonial: React.FC<{}>=()=>{
 	<p className="text-[#2E524A]">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. className aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
     </p>
-    <span className="text-[20px] text-[#2E524A] font-bold block mt-3"> Anurag Prasoon  </span>
+    <span className="text-[20px] text-[#2E524A] font-bold  mt-3"> Anurag Prasoon  </span>
     <span className="text-[14px] text-[#2E524A] font-semibold"> Jharkhand,India </span>
 </div>
 </div>

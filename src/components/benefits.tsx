@@ -19,9 +19,9 @@ const BenefitsSection: React.FC = ()=>{
     <span className="text-center">You love impact—but crave inner space.</span>
     </center>
   </div>
-  <div className="inline-block justify-center items-center p-10 sm:w-[33%]"><center>
+  <div className="inline- justify-center items-center p-10 sm:w-[33%]"><center>
     <DotLottieReact src="/Brain Animation.json" loop autoplay className="w-[140px] mb-5"/>
-    <div className="inline-block text-center">You’re ready to unplug not to escape—but to re-enter life more fully.</div>
+    <div className="inline- text-center">You’re ready to unplug not to escape—but to re-enter life more fully.</div>
     </center>
   </div>
   
