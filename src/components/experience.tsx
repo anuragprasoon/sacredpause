@@ -1,7 +1,7 @@
 import React from "react"
 const Experience: React.FC<{}>=()=>{
     return(<div className="w-full sm:flex bg-white text-black p-10">
-<div className="urbanist p-10 w-[400px] sm:w-[50%]">
+<div className="urbanist p-10 sm:w-[50%]">
 <div className="text-[16px] text-[#E4A689]">EXPERIENCE</div>
 <div className="text-[18px]">
 <h3 className="text-[40px] font-extrabold">Experience A Luxury Wellness Retreat in India</h3>
