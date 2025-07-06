@@ -2,21 +2,25 @@ import React from "react";
 import Link from "next/link";
 
 const Footer: React.FC = () => {
+  const date= new Date();
+  var year= date.getFullYear();
+  
+
   return <>
       <div className="bg-[#172525] flex min-h-[222px] w-full mt-[104px] max-md:max-w-full max-md:mt-[0px] urbanist-100" />
       <div className="z-10 mt-[-326px] w-full max-md:max-w-full max-md:mt-[-200px]">
         <div className="bg-[#172525] flex min-h-[406px] w-full flex-wrap px-6 py-[60px] max-md:max-w-full max-md:px-5">
           <div className="max-md:mb-[30px] flex min-w-60 flex-col items-stretch grow shrink w-[279px] px-8 max-md:px-5">
             <div className="max-w-full w-[285px] text-[14px] text-[rgba(188,188,188,1)] font-normal">
-            <Link href={'/'}><img src="https://cdn.builder.io/api/v1/image/assets/TEMP/f5d86b31aeefa680477dfb00b45ee4bad0741df4?placeholderIfAbsent=true" alt="Footer Logo" className="aspect-[1.11] object-contain w-[59px]" /></Link>
+            <Link href={'/'}><img src="/logo.png" alt="Footer Logo" className=" object-cover w-[100px]" /></Link>
               <div className="mt-6">
-                © 2025 Lambda Adventures
+                © {year} Sacred Pause
                 <br />
                 All images are copyrighted by their respective authors.
               </div>
             </div>
             <div className="flex items-center gap-2 mt-[27px]">
-              <a href="https://instagram.com/LambdaAdventure" aria-label="Instagram">
+              <a href="https://instagram.com/sacredpause.in" aria-label="Instagram">
                 <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/b739864375de9c9583a930d2b3fc3cf659d08648?placeholderIfAbsent=true" alt="Facebook" className="aspect-[1] object-contain w-[34px] self-stretch shrink-0 my-auto hover:opacity-80 transition-opacity" />
               </a>
               <a href="https://www.linkedin.com/company/lambdaadventure" aria-label="Linkedin">
