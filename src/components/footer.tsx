@@ -31,52 +31,49 @@ const Footer: React.FC = () => {
             <div className="max-md:px-5">
               <h3 className="text-white font-bold">Quick Links</h3>
               <div className="mt-6 hover:text-white transition-colors cursor-pointer">
-              <Link href={'/story'}>About Us</Link>
+              <Link href={'/about'}>About Us</Link>
               </div>
               <div className="mt-6 hover:text-white transition-colors cursor-pointer">
               <Link href={'/contact'}>Contact Us</Link>
               </div>
               <div className="mt-6 hover:text-white transition-colors cursor-pointer">
-              <Link href={'/info/#disclaimer'}>Disclaimer</Link>
+              <Link href={'/disclaimer'}>Disclaimer</Link>
               </div>
               <div className="mt-6 hover:text-white transition-colors cursor-pointer">
-            <Link href={'/info/#privacy'}>Privacy Policy</Link>
+            <Link href={'/privacy'}>Privacy Policy</Link>
               </div>
               <div className="mt-6 hover:text-white transition-colors cursor-pointer">
-               <Link href={'/info/#terms'}> Terms & Conditions</Link>
+               <Link href={'/terms'}> Terms & Conditions</Link>
               </div>
               <div className="mt-6 hover:text-white transition-colors cursor-pointer">
-                <Link href={'/info/#cancellation'}>Cancellation Policy</Link>
+                <Link href={'/cancellation'}>Cancellation Policy</Link>
               </div>
             </div>
             <div className="max-md:px-5">
               <h3 className="text-white font-bold">Our Services</h3>
               <div className="mt-6 hover:text-white transition-colors cursor-pointer">
-                <Link href={'/trek'}>Trek & Expeditions</Link>
+                <Link href={'/#discover'}>Lite Yoga Retreats</Link>
               </div>
               <div className="mt-6 hover:text-white transition-colors cursor-pointer">
-                Yoga Retreat
+                <Link href={'/#discover'}>Essential Yoga Retreats</Link>
               </div>
               <div className="mt-6 hover:text-white transition-colors cursor-pointer">
-                Adventure Camps
+                <Link href={'/#discover'}>Premium Yoga Retreats</Link>
               </div>
               <div className="mt-6 hover:text-white transition-colors cursor-pointer">
-                Custom Treks
+                <Link href={'https://lambdaadventure.com'}>Trek & Expeditions</Link>
               </div>
             </div>
             <div className="max-md:hidden">
-              <h3 className="text-white font-bold">Upcoming Treks</h3>
+              <h3 className="text-white font-bold">Upcoming Retreats</h3>
               <div className="mt-6 hover:text-white transition-colors cursor-pointer">
-                Brahmatal Trek
+                Ladakh Yoga Retreat
               </div>
               <div className="mt-6 hover:text-white transition-colors cursor-pointer">
-                Chandrashila Tungnath
+                Rishikesh Yoga Retreat
               </div>
               <div className="mt-6 hover:text-white transition-colors cursor-pointer">
-                Kedarkantha
-              </div>
-              <div className="mt-6 hover:text-white transition-colors cursor-pointer">
-                Kuari Pass Trek
+                Dharmshala Yoga Retreat
               </div>
             </div>
           </div>
