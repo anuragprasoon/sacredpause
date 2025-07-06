@@ -23,24 +23,25 @@ const Experience: React.FC<{}>=()=>{
         </div>
 
 <div className="sm:flex p-10 gap-5 w-[50%] justify-center items-center text-black" >
-<div className="relative w-[200px] h-[300px] rounded-full urbanist " data-aos="fade-left">
-<img className="object-cover rounded" src="https://res.cloudinary.com/anuragprasoon/image/upload/v1750478607/sacred-pause-com/nuqph0eifartcwkubtme.png"/>
-<span className="text-white md:text-black text-[20px] absolute bottom-10 text-center w-full p-3">Morning Yoga</span>
+    
+<div className=" w-[200px] h-[200px] rounded-full urbanist mb-10" data-aos="fade-left">
+<img className="w-full h-full object-cover rounded" src="https://res.cloudinary.com/anuragprasoon/image/upload/v1750478607/sacred-pause-com/nuqph0eifartcwkubtme.png"/>
+<span className=" hidden text-white md:text-black text-[20px] absolute bottom-10 text-center w-full p-3">Morning Yoga</span>
 </div>
 
-<div className="relative w-[200px] h-[300px] rounded-full urbanist " data-aos="fade-left">
-<img className="object-cover rounded" src="https://res.cloudinary.com/anuragprasoon/image/upload/v1750478606/sacred-pause-com/v3dbtklnnukf6x8lrvir.png"/>
-<span className="text-white md:text-black text-[20px] absolute bottom-10 text-center w-full p-3">Meditative walks</span>
+<div className=" w-[200px] h-[200px] rounded-full urbanist mb-10 " data-aos="fade-left">
+<img className="w-full h-full object-cover rounded" src="https://res.cloudinary.com/anuragprasoon/image/upload/v1750478606/sacred-pause-com/v3dbtklnnukf6x8lrvir.png"/>
+<span className="hidden text-white md:text-black text-[20px] absolute bottom-10 text-center w-full p-3">Meditative walks</span>
 </div>
 
-<div className="relative w-[200px] h-[300px] rounded-full urbanist "data-aos="fade-left">
-<img className="object-cover rounded" src="https://res.cloudinary.com/anuragprasoon/image/upload/v1750478606/sacred-pause-com/ihfvqt5lrmvxhd4nzd2z.png"/>
-<span className="text-white md:text-black text-[20px] absolute bottom-10 text-center w-full p-3">Ayurvedic meals</span>
+<div className=" w-[200px] h-[200px] rounded-full urbanist mb-10 "data-aos="fade-left">
+<img className="w-full h-full object-cover rounded" src="https://res.cloudinary.com/anuragprasoon/image/upload/v1750478606/sacred-pause-com/ihfvqt5lrmvxhd4nzd2z.png"/>
+<span className="hidden text-white md:text-black text-[20px] absolute bottom-10 text-center w-full p-3">Ayurvedic meals</span>
 </div>
 
-<div className="relative w-[200px] h-[300px] rounded-full urbanist " data-aos="fade-left">
-<img className="object-cover rounded" src="https://res.cloudinary.com/anuragprasoon/image/upload/v1750478606/sacred-pause-com/lo7gokokci9xmqb1drig.png"/>
-<span className="text-white md:text-black text-[20px] absolute bottom-10 text-center w-full p-3">Restorative sessions</span>
+<div className="relative w-[200px] h-[200px] rounded-full urbanist mb-10 " data-aos="fade-left">
+<img className=" w-full h-full object-cover rounded" src="https://res.cloudinary.com/anuragprasoon/image/upload/v1750478606/sacred-pause-com/lo7gokokci9xmqb1drig.png"/>
+<span className="hidden text-white md:text-black text-[20px] absolute bottom-10 text-center w-full p-3">Restorative sessions</span>
 </div>
 
 </div>

@@ -3,8 +3,6 @@ import { useEffect } from "react";
 import AOS from "aos";
 
 
-
-
 const WhyUs: React.FC=()=>{
 
     useEffect(()=>{
