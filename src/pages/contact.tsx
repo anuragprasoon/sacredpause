@@ -19,7 +19,7 @@ export default function Contact() {
     <input className="urbanist rounded p-2 w-full outline-1 outline-black mb-3"type="text" placeholder="Name"/>
     <input className="urbanist rounded p-2 w-full outline-1 outline-black mb-3"type="number" placeholder="Phone"/>
     <input className="urbanist rounded p-2 w-full outline-1 outline-black mb-3"type="email" placeholder="E-Mail"/>
-    <textarea className="urbanist rounded p-2 w-full h-[200px] outline-1 outline-black mb-3"type="text" placeholder="Message"></textarea>
+    <input className="urbanist rounded p-2 w-full h-[200px] outline-1 outline-black mb-3"type="text" placeholder="Message">
   <button className="bg-[#172525] text-white p-2 w-[150px] rounded"type="submit">Send</button>
   </form>
   
