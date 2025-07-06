@@ -1,6 +1,7 @@
 import Image from "next/image";
 import AOS from "aos";
 import { useEffect } from "react";
+import Head from "next/head";
 
 
 
@@ -9,7 +10,28 @@ export default function About() {
             AOS.init()
             },[])
 
-  return (<><div className="p-10 text-black">
+  return (<>
+  <Head>
+      <title>About Sacred Pause | India's Best Yoga Retreat Programs powered by Lambda Adventures</title>
+      <meta name="description" content="A luxury yoga retreat designed to help you slow down, reconnect, and find balance through mindful movement, meditation, and nature." />
+      <meta name="keywords" content="yoga, yoga retreat, india, ladakh yoga retreat, rishikesh yoga retreat, dharmsala yoga retreat, luxury yoga retreat" />
+      <meta name="author" content="Sacred Pause" />
+    
+      <meta property="og:title" content="About Sacred Pause | For Your Mind, Body & Soul " />
+      <meta property="og:description" content="A luxury yoga retreat designed to help you slow down, reconnect, and find balance through mindful movement, meditation, and nature." />
+      <meta property="og:image" content="https://sacredpause.in/thumb.png" />
+      <meta property="og:url" content="https://sacredpause.in" />
+      <meta property="og:type" content="website" />
+
+      <meta name="twitter:card" content="About Sacred Pause" />
+      <meta name="twitter:title" content="About Sacred Pause | For Your Mind, Body & Soul " />
+      <meta name="twitter:description" content="A luxury yoga retreat designed to help you slow down, reconnect, and find balance through mindful movement, meditation, and nature." />
+      <meta name="twitter:image" content="https://sacredpause.in/thumb.png" />
+
+  
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
+  <div className="p-10 text-black">
             <h2 className="urbanist text-[40px] font-bold anim" data-aos="fade-up">Our Story</h2>
             <img  data-aos="fade-up" className="mb-5 mt-5 object-cover h-[300px] w-full rounded anim" src="https://images.pexels.com/photos/3820380/pexels-photo-3820380.jpeg"/> 
             <p className="urbanist anim" data-aos="fade-right">

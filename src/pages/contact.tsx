@@ -2,10 +2,31 @@ import Image from "next/image";
 import WhyUs from "@/components/whyus";
 import BenefitsSection from "@/components/benefits";
 import Hero from "@/components/hero";
+import Head from "next/head";
 
 export default function Contact() {
   return (
     <>
+    <Head>
+      <title>Contact Us | Sacred Pause</title>
+      <meta name="description" content="A luxury yoga retreat designed to help you slow down, reconnect, and find balance through mindful movement, meditation, and nature." />
+      <meta name="keywords" content="yoga, yoga retreat, india, ladakh yoga retreat, rishikesh yoga retreat, dharmsala yoga retreat, luxury yoga retreat" />
+      <meta name="author" content="Sacred Pause" />
+    
+      <meta property="og:title" content="Contact Us | Sacred Pause" />
+      <meta property="og:description" content="A luxury yoga retreat designed to help you slow down, reconnect, and find balance through mindful movement, meditation, and nature." />
+      <meta property="og:image" content="https://sacredpause.in/thumb.png" />
+      <meta property="og:url" content="https://sacredpause.in" />
+      <meta property="og:type" content="website" />
+
+      <meta name="twitter:card" content="Contact Us | Sacred Pause" />
+      <meta name="twitter:title" content="Contact Us | Sacred Pause" />
+      <meta name="twitter:description" content="A luxury yoga retreat designed to help you slow down, reconnect, and find balance through mindful movement, meditation, and nature." />
+      <meta name="twitter:image" content="https://sacredpause.in/thumb.png" />
+
+  
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
     <div className="urbanist p-10 text-center text-black">
 <h3 className="text-[40px] font-bold">Connect With Us</h3>
 <p>Interested in Yoga Retreat? Have questions about our programs? Our Team is Ready to help! Reach out to us today.

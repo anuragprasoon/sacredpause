@@ -2,10 +2,32 @@ import Image from "next/image";
 import WhyUs from "@/components/whyus";
 import BenefitsSection from "@/components/benefits";
 import Hero from "@/components/hero";
+import Head from "next/head";
 
 export default function Cancellation() {
   return (
     <>
+    <Head>
+      <title>Cancellation Policy | Sacred Pause</title>
+      <meta name="description" content="A luxury yoga retreat designed to help you slow down, reconnect, and find balance through mindful movement, meditation, and nature." />
+      <meta name="keywords" content="yoga, yoga retreat, india, ladakh yoga retreat, rishikesh yoga retreat, dharmsala yoga retreat, luxury yoga retreat" />
+      <meta name="author" content="Sacred Pause" />
+    
+      <meta property="og:title" content="Cancellation Policy | Sacred Pause" />
+      <meta property="og:description" content="A luxury yoga retreat designed to help you slow down, reconnect, and find balance through mindful movement, meditation, and nature." />
+      <meta property="og:image" content="https://sacredpause.in/thumb.png" />
+      <meta property="og:url" content="https://sacredpause.in" />
+      <meta property="og:type" content="website" />
+
+      <meta name="twitter:card" content="Cancellation Policy | Sacred Pause" />
+      <meta name="twitter:title" content="Cancellation Policy | Sacred Pause" />
+      <meta name="twitter:description" content="A luxury yoga retreat designed to help you slow down, reconnect, and find balance through mindful movement, meditation, and nature." />
+      <meta name="twitter:image" content="https://sacredpause.in/thumb.png" />
+
+  
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
+
     <div className="p-10 text-black">
             <h2 className="urbanist text-[40px] font-bold anim" data-aos="fade-up">Cancellation Policy</h2>
             <img  data-aos="fade-up" className="mb-5 mt-5 object-cover h-[300px] w-full rounded anim" src="https://images.pexels.com/photos/3820380/pexels-photo-3820380.jpeg"/> 
