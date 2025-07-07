@@ -7,14 +7,14 @@ const Trips:React.FC=()=>{
 <div className="sm:flex gap-5">
 
 <div className="urbanist w-full relative mb-5">
-	<img className="rounded object-cover w-full h-[300px]" src="https://images.pexels.com/photos/32885140/pexels-photo-32885140.jpeg"/>
+	<img className="rounded object-cover w-full h-[400px]" src="https://images.pexels.com/photos/32885140/pexels-photo-32885140.jpeg"/>
     <div className="  bottom-1 flex  items-center p-2 w-full">
     	<div className="p-2">
     	<div className="text-[20px] font-bold">Ladakh Yoga Retreat</div>
         <div className="text-[14px]">3 Days| 5 Days | 7days </div>
         </div>
         <div className="p-2 ml-auto">
-        <button className=" rounded-full w-[100px] p-2 bg-[#175175] text-white">Book Now</button>
+        <button className=" rounded-full w-[100px] p-2 bg-[#172525] text-white">Book Now</button>
         </div>
     </div>
     <p className="p-2">
