@@ -27,7 +27,7 @@ export default function Disclaimer() {
   
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <div className="p-10 text-black">
+    <div className="p-10 text-black bg-white">
             <h2 className="urbanist text-[40px] font-bold anim" data-aos="fade-up">Disclaimer</h2>
             <img  data-aos="fade-up" className="mb-5 mt-5 object-cover h-[300px] w-full rounded anim" src="https://images.pexels.com/photos/3820380/pexels-photo-3820380.jpeg"/> 
             <p className="urbanist anim" data-aos="fade-right">

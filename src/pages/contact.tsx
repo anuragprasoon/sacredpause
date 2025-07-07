@@ -27,7 +27,7 @@ export default function Contact() {
   
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <div className="urbanist p-10 text-center text-black">
+    <div className="urbanist p-10 text-center text-black bg-white">
 <h3 className="text-[40px] font-bold">Connect With Us</h3>
 <p>Interested in Yoga Retreat? Have questions about our programs? Our Team is Ready to help! Reach out to us today.
 </p>

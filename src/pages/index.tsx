@@ -7,8 +7,13 @@ import Value from "@/components/values";
 import Testimonial from "@/components/testimonials";
 import Head from "next/head";
 import PopUp from "@/components/popup";
+import Programs from "@/components/programs";
+
+
+
 
 export default function Home() {
+ 
   return (
     <>
     <Head>
@@ -31,8 +36,10 @@ export default function Home() {
   
       <link rel="icon" href="/favicon.ico" />
     </Head>
+
     <Hero/>
     <Experience/>
+    <Programs/>
     <Value/>
     <BenefitsSection/>
     <WhyUs/>
@@ -43,6 +50,8 @@ export default function Home() {
           <img src="https://res.cloudinary.com/dibrmj6nh/image/upload/v1747946474/Frame_1597884222_xnchxt.png" className="w-[50px] hover:scale-150"/>
         </a>
       </div>
+
     </>
+    
   );
 }

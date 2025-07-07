@@ -1,10 +1,19 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
 const PopUp:React.FC=()=>{
-    const [popview, setPopview] = useState(true);
+    const [popview, setPopview] = useState(false);
+
     const close=()=>{
         setPopview(false);
     }
+
+    useEffect(()=>{
+        setTimeout(()=>{
+            setPopview(true);
+        },5000)
+    },[])
+
+
     return(popview?<>
         <div className="max-sm:hidden  fixed z-[2] top-10  p-10 rounded w-[70%] left-0 right-0 mx-auto text-black">
         <button className="bg-white rounded-full p-2 m-2 absolute right-10" onClick={close}>X</button>
