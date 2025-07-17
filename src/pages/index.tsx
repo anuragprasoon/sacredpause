@@ -44,7 +44,6 @@ export default function Home() {
     <BenefitsSection/>
     <WhyUs/>
     <Testimonial/>
-    <PopUp/>
     <div className="fixed bottom-2 right-2">
         <a href="https://api.whatsapp.com/send/?phone=919065550642&text=Hi%20Sacred%20Pause,%20I%20want%20to%20talk%20about%20yoga%20retreat">
           <img src="https://res.cloudinary.com/dibrmj6nh/image/upload/v1747946474/Frame_1597884222_xnchxt.png" className="w-[50px] hover:scale-150"/>

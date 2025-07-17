@@ -19,8 +19,9 @@ const Value: React.FC<{}>=()=>{
 <div className="urbanist max-sm:w-full  p-5 flex items-center" data-aos="fade-right">
     <img className=" bg-white rounded-full w-[80px] p-5 m-3" src="https://res.cloudinary.com/anuragprasoon/image/upload/v1750478607/sacred-pause-com/auvyzswhqnr8gyncycib.svg"/>
   	<div>
-    	<span className="text-[18px] font-semibold">Your Private Eco Sanctuary</span>
-        <p className="text-[#2E524A] text-[16px]">5 nights in a private, design forward eco-villa
+    	<span className="text-[18px] font-semibold">स्वाध्याय (Svādhyāya) Sacred Space
+</span>
+        <p className="text-[#2E524A] text-[16px]">Five nights in a nature-immersed sanctuary inspired by yogic ashram simplicity and quietude
         </p>
   	</div>
 </div>
@@ -29,8 +30,8 @@ const Value: React.FC<{}>=()=>{
 <div className="urbanist max-sm:w-full   p-5 flex items-center " data-aos="fade-right">
     <img className=" bg-white rounded-full w-[80px] p-5 m-3" src="https://res.cloudinary.com/anuragprasoon/image/upload/v1750478607/sacred-pause-com/fzaremcj7ibj7eckjujs.svg"/>
   	<div>
-    	<span className="text-[18px] font-semibold">Nourish with Nature’s Wisdom</span>
-        <p className="text-[#2E524A] text-[16px]">Organic, Ayurvedic-inspired meals and herbal elixirs
+    	<span className="text-[18px] font-semibold">प्राण आहार (Prāṇa Āhāra) Food as Prana</span>
+        <p className="text-[#2E524A] text-[16px]">Sattvic, Ayurvedic-inspired meals and herbal infusions rooted in ancient Indian healing traditions
         </p>
   	</div>
 </div>
@@ -38,8 +39,8 @@ const Value: React.FC<{}>=()=>{
 <div className="urbanist max-sm:w-full  p-5 flex items-center " data-aos="fade-right">
     <img className=" bg-white rounded-full w-[80px] p-5 m-3" src="https://res.cloudinary.com/anuragprasoon/image/upload/v1750478608/sacred-pause-com/fegsseogtxg6itvxhgns.svg"/>
   	<div>
-    	<span className="text-[18px] font-semibold">Personalized Wellness Journey</span>
-        <p className="text-[#2E524A] text-[16px]">Personalized wellness consultation & integration toolkit
+    	<span className="text-[18px] font-semibold">अन्तर्मुखी यात्रा (Antarmukhī Yātrā) Journey Inward</span>
+        <p className="text-[#2E524A] text-[16px]">Personal wellness consultation guided by yogic philosophy and integration tools for daily life
         </p>
   	</div>
 </div>
@@ -57,8 +58,8 @@ const Value: React.FC<{}>=()=>{
 <div className="sm:ml-[100px]">
 <div className="urbanist max-sm:w-full   p-5 flex items-center text-right " data-aos="fade-left">
   	<div>
-    	<span className="text-[18px] font-semibold text-[#EBDBCB]">Daily Movement & Mindfulness</span>
-        <p className="text-[#2E524A] text-[16px] text-white">Daily yoga, breathwork & stillness practices
+    	<span className="text-[18px] font-semibold text-[#EBDBCB]">साधना (Sādhanā) Stillness as Practice</span>
+        <p className="text-[#2E524A] text-[16px] text-white">Daily yoga, pranayama, and dhyana drawn from classical Indian yogic traditions
         </p>
   	</div>
     <img className=" bg-white rounded-full w-[80px] p-5 m-3" src="https://res.cloudinary.com/anuragprasoon/image/upload/v1750478606/sacred-pause-com/gy3p5tab55ssrxhzgdao.svg"/>
@@ -66,8 +67,9 @@ const Value: React.FC<{}>=()=>{
 
 <div className="urbanist max-sm:w-full  p-5 flex items-center text-right " data-aos="fade-left">
   	<div>
-    	<span className="text-[18px] font-semibold text-[#EBDBCB]">Creative & Earth-Centered Rituals</span>
-        <p className="text-[#2E524A] text-[16px] text-white">Nature immersions, creative workshops & intentional rituals
+    	<span className="text-[18px] font-semibold text-[#EBDBCB]">संस्कार (Saṃskāra) Rituals of Connection
+</span>
+        <p className="text-[#2E524A] text-[16px] text-white">Earth-honoring ceremonies, mantra, journaling, and creative practices to realign with your inner self
         </p>
   	</div>
     <img className=" bg-white rounded-full w-[80px] p-5 m-3" src="https://res.cloudinary.com/anuragprasoon/image/upload/v1750478607/sacred-pause-com/z4pvc4tprqzwlasayzek.svg"/>
