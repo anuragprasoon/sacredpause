@@ -17,7 +17,7 @@ const WhyUs: React.FC=()=>{
 <div className="text-[30px] urbanist font-extrabold mb-[10px]">Because rest should feel beautiful</div>
 
   <div className="text-[24px] mb-[10px] urbanist font-semibold ">Designed for Deep Rest
-      <div className="text-[16px] urbanist font-light">We limit each retreat to 12 guests. Every element—from architecture to aromatics—is curated to support your nervous system, not stimulate it.
+      <div className="text-[16px] urbanist font-light">We limit each retreat to 12 guests. Every element from architecture to aromatics is curated to support your nervous system, not stimulate it.
   	</div>
   </div>
   

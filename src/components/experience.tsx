@@ -17,7 +17,7 @@ const Experience: React.FC<{}>=()=>{
             <div className="text-[16px] text-[#E4A689]">EXPERIENCE</div>
             <div className="text-[18px]">
             <h3 className="text-[40px] font-extrabold">Experience A Luxury Wellness Retreat in India</h3>
-            Step away from the rush and return to what matters. Nestled in nature, this retreat offers space to slow down, reconnect, and recharge—from mindful movement and nourishing meals to meaningful connection. Come home to yourself.
+            Step away from the rush and return to what matters. Nestled in nature, this retreat offers space to slow down, reconnect, and recharge from mindful movement and nourishing meals to meaningful connection. Come home to yourself.
             <button className="block bg-[#2E524A] text-white p-5 text-[12px] font-bold rounded-full mt-5">Book Now</button>
             </div>
         </div>
