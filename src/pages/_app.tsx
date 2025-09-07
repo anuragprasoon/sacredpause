@@ -10,6 +10,9 @@ import Head from "next/head";
 const urbanist = Urbanist({
   subsets: ['latin'],
   display: 'swap',
+  weight: ['400', '500', '600', '700'],
+  preload: true,
+  fallback: ['system-ui', 'arial']
 });
 
 
