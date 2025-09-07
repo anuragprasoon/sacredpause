@@ -211,7 +211,7 @@ const handleFormSubmit = (e: React.FormEvent) => {
     {/* Carousel Images */}
     <div className="relative w-full h-full">
         {heroImages.map((image, index) => (
-            <img
+            <Image
                 key={index}
                 className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ${
                     index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
@@ -698,7 +698,7 @@ const handleFormSubmit = (e: React.FormEvent) => {
                     <h3 className="text-[20px] sm:text-[24px] font-bold text-[#172525] mb-6">Gallery</h3>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                         {galleryImages.map((image, index) => (
-                            <img
+                            <Image
                                 key={index}
                                 className="w-full h-32 sm:h-40 object-cover rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer shadow-sm"
                                 src={image}

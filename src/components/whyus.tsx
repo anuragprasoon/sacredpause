@@ -28,7 +28,7 @@ You don't need more intensity, you need the opposite. Everything here is designe
   </div>
 </div>
 </div>
-	<img alt="Sacred Pause" data-aos="fade-up" src="https://res.cloudinary.com/anuragprasoon/image/upload/v1750479748/sacred-pause-com/u66lkq3ltsvpyfflngx4.png" className="sm:w-[50%] w-[100%] object-cover "/>
+	<Image alt="Sacred Pause" data-aos="fade-up" src="https://res.cloudinary.com/anuragprasoon/image/upload/v1750479748/sacred-pause-com/u66lkq3ltsvpyfflngx4.png" className="sm:w-[50%] w-[100%] object-cover "/>
 </div>
     )
 }
