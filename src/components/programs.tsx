@@ -11,7 +11,7 @@ const Programs:React.FC=()=>{
 <div className="flex flex-col sm:flex-row gap-5 justify-center items-center w-full">
 
 <div className="urbanist relative w-[360px]">
-	<img className="rounded object-cover w-full h-[300px]" src="https://images.pexels.com/photos/32885140/pexels-photo-32885140.jpeg"/>
+	<img alt="Ladakh Yoga Retreat" className="rounded object-cover w-full h-[300px]" src="https://images.pexels.com/photos/32885140/pexels-photo-32885140.jpeg"/>
     <div className="absolute bottom-1 flex justify-center items-center p-2 w-full text-white">
     	<div className="p-2">
     	<div className="text-[20px] font-bold">Ladakh Yoga Retreat</div>
@@ -24,7 +24,7 @@ const Programs:React.FC=()=>{
 </div>
 
 <div className="urbanist w-[360px] relative">
-	<img className="rounded object-cover w-full h-[300px]" src="https://images.pexels.com/photos/20035455/pexels-photo-20035455.jpeg"/>
+	<img alt="Rishikesh Yoga Retreat" className="rounded object-cover w-full h-[300px]" src="https://images.pexels.com/photos/20035455/pexels-photo-20035455.jpeg"/>
     <div className="absolute bottom-1 flex justify-center items-center p-2 w-full text-white">
     	<div className="p-2">
     	<div className="text-[20px] font-bold">Rishikesh Yoga Retreat</div>
@@ -37,7 +37,7 @@ const Programs:React.FC=()=>{
 </div>
 
 <div className="urbanist w-[360px] relative">
-	<img className="rounded object-cover w-full h-[300px]" src="https://images.pexels.com/photos/26382826/pexels-photo-26382826.jpeg"/>
+	<img alt="Dharmshala Yoga Retreat" className="rounded object-cover w-full h-[300px]" src="https://images.pexels.com/photos/26382826/pexels-photo-26382826.jpeg"/>
     <div className="absolute bottom-1 flex justify-center items-center p-2 w-full text-white">
     	<div className="p-2">
     	<div className="text-[20px] font-bold">Dharmshala Yoga Retreat</div>

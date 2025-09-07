@@ -33,7 +33,7 @@ export default function About() {
     </Head>
   <div className="p-10 text-black bg-white">
             <h2 className="urbanist text-[40px] font-bold anim" data-aos="fade-up">Our Story</h2>
-            <img  alt="Sacred Pause Story thumbnail"data-aos="fade-up" className="mb-5 mt-5 object-cover h-[300px] w-full rounded anim" src="https://images.pexels.com/photos/3820380/pexels-photo-3820380.jpeg"/> 
+            <img  alt="Sacred Pause Story thumbnail" data-aos="fade-up" className="mb-5 mt-5 object-cover h-[300px] w-full rounded anim" src="https://images.pexels.com/photos/3820380/pexels-photo-3820380.jpeg"/> 
             <p className="urbanist anim" data-aos="fade-right">
               In the bustling marketplace of modern wellness, Sacred Pause was born from a different calling. We witnessed too many searching for transformation in all the wrong places: chasing the next technique, the perfect guru, the instant breakthrough.
               Our founders, after decades of their own spiritual seeking across India's ashrams and sacred sites, understood a profound truth: transformation doesn't happen through force or perfection. It unfolds in the spaces between breaths, in moments of genuine stillness, in the courage to simply be present with what is.
