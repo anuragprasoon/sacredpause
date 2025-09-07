@@ -33,15 +33,16 @@ export default function About() {
     </Head>
   <div className="p-10 text-black bg-white">
             <h2 className="urbanist text-[40px] font-bold anim" data-aos="fade-up">Our Story</h2>
-            <img  data-aos="fade-up" className="mb-5 mt-5 object-cover h-[300px] w-full rounded anim" src="https://images.pexels.com/photos/3820380/pexels-photo-3820380.jpeg"/> 
+            <img  alt="Sacred Pause Story thumbnail"data-aos="fade-up" className="mb-5 mt-5 object-cover h-[300px] w-full rounded anim" src="https://images.pexels.com/photos/3820380/pexels-photo-3820380.jpeg"/> 
             <p className="urbanist anim" data-aos="fade-right">
-~
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus pharetra orci, eu bibendum nulla fringilla eget. Nullam accumsan enim id tristique molestie. Cras sed tristique lorem. Aliquam imperdiet libero ac nisl porta, et congue magna eleifend. Ut pharetra aliquet eros, non consectetur quam posuere eget. Aenean placerat eros id semper bibendum. Sed at fermentum nibh.
+              In the bustling marketplace of modern wellness, Sacred Pause was born from a different calling. We witnessed too many searching for transformation in all the wrong places: chasing the next technique, the perfect guru, the instant breakthrough.
+              Our founders, after decades of their own spiritual seeking across India's ashrams and sacred sites, understood a profound truth: transformation doesn't happen through force or perfection. It unfolds in the spaces between breaths, in moments of genuine stillness, in the courage to simply be present with what is.
             </p><br/>
             <p className="urbanist" data-aos="fade-right">
-              Pellentesque ultricies mauris ut massa gravida sodales. Praesent malesuada libero et justo efficitur lobortis at id felis. Mauris tempor a diam sit amet rutrum. Praesent pharetra enim velit, in volutpat est fermentum sed. Curabitur est nulla, dapibus sed lobortis quis, luctus sit amet dolor. Vestibulum maximus metus ac rhoncus pellentesque. Praesent nec ex quis tortor pulvinar cursus sed facilisis nulla. Nunc vitae iaculis augue. Vestibulum iaculis augue a massa faucibus porttitor id in mi. Etiam velit metus, tempus a tellus blandit, elementum sollicitudin tellus. Nulla facilisi. Maecenas ut risus sit amet nulla ultrices imperdiet nec vel urna. Cras fringilla vitae quam finibus posuere. Vivamus eu elit turpis. Nam ac urna eu eros laoreet egestas eget vitae ipsum. Vestibulum eu malesuada ex.
+We created Sacred Pause as a sanctuary for the professional who meditates, the leader who seeks meaning, the achiever who knows there must be more. Our retreats honor both your worldly accomplishments and your soul's deeper longing.
+Every aspect of your experience is carefully curated to support your inner unfolding. From the placement of meditation cushions to the selection of organic meals, from the timing of yoga sessions to the choice of sacred sites we visit together, everything serves your journey toward remembering who you truly are.
             </p>
-            
+
           </div>
           <div className="flex mt-5 gap-2 overflow-x-auto bg-[#172525] p-10 rounded">
                 <img className="h-[300px] w-[400px] object-cover rounded" src="https://images.pexels.com/photos/1234035/pexels-photo-1234035.jpeg"/>
