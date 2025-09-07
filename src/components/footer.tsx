@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
               </a>
             </div>
           </div>
-          <div className="flex min-w-60 gap-[40px_48px] text-[14px] text-[rgba(123,123,123,1)] font-normal flex-wrap max-md:max-w-full">
+          <div className="flex min-w-60 gap-[40px_48px] text-[14px] text-[rgba(200,200,200,1)] font-normal flex-wrap max-md:max-w-full">
             <div className="max-md:px-5">
               <h3 className="text-white font-bold">Quick Links</h3>
               <div className="mt-6 hover:text-white transition-colors cursor-pointer">

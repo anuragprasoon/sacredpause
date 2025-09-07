@@ -5,7 +5,7 @@ import {DotLottieReact} from '@lottiefiles/dotlottie-react';;
 const BenefitsSection: React.FC = ()=>{
     return(
         <div className="bg-white text-black items-center justify-center p-10">
-  <h2 className="font-extrabold text-[40px] text-center">This is a Invitation for You</h2>
+  <h3 className="font-extrabold text-[40px] text-center">This is a Invitation for You</h3>
   <span className="block text-center w-full">Sacred Pause is for the mindful high performer, the soul with a full calendar but an empty breath.</span>
   
  <div className="sm:flex items-center"> 

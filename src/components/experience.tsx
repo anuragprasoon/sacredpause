@@ -16,7 +16,7 @@ const Experience: React.FC<{}>=()=>{
         <div className="urbanist p-10 sm:w-[50%]" data-aos="fade-right">
             <div className="text-[16px] text-[#E4A689]">EXPERIENCE</div>
             <div className="text-[18px]">
-            <h3 className="text-[34px] font-extrabold">Experience India's Most Luxurious Yoga Retreat for Mindful High Performers</h3>
+            <h2 className="text-[34px] font-extrabold">Experience India's Most Luxurious Yoga Retreat for Mindful High Performers</h2>
             Your Sacred Pause retreat is not a vacation from your life, it's a pilgrimage into its deeper meaning. The teachings you'll receive aren't borrowed from books or weekend workshops. They come directly from lineage holders - masters who carry the living transmission of yoga's deepest truths. Through them, you'll learn not just the postures, but the profound philosophy that transforms physical practice into spiritual awakening.
             <button className="block bg-[#2E524A] text-white p-5 text-[12px] font-bold rounded-full mt-5">Book Now</button>
             </div>
