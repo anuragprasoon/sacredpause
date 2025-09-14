@@ -703,7 +703,6 @@ const handleFormSubmit = (e: React.FormEvent) => {
                                 key={index}
                                 className="w-full h-32 sm:h-40 object-cover rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer shadow-sm"
                                 src={image}
-                                fill
                                 alt={`Gallery ${index + 1}`}
                             />
                         ))}
