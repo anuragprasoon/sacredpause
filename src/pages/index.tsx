@@ -8,6 +8,7 @@ import Testimonial from "@/components/testimonials";
 import Head from "next/head";
 import PopUp from "@/components/popup";
 import Programs from "@/components/programs";
+import ExperienceCard from "@/components/tripExperienceCard";
 
 
 
@@ -38,14 +39,14 @@ export default function Home() {
     </Head>
 
     <Hero/>
+    <ExperienceCard/>
     <Experience/>
-    <Programs/>
     <Value/>
     <BenefitsSection/>
     <WhyUs/>
     <div className="fixed bottom-2 right-2">
         <a href="https://api.whatsapp.com/send/?phone=919065550642&text=Hi%20Sacred%20Pause,%20I%20want%20to%20talk%20about%20yoga%20retreat">
-          <Image alt="contact us on whatsapp" src="/WhatsApp.webp" className="w-[50px] hover:scale-150"/>
+          <img alt="contact us on whatsapp" src="/WhatsApp.webp" className="w-[50px] hover:scale-150"/>
         </a>
       </div>
 

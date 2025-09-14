@@ -9,7 +9,7 @@ const Hero: React.FC=()=>{
     },[])
 
     return(
-        <div className="relative flex justify-center items-center h-screen  bg-[#172525]"><center>
+        <div className="relative flex justify-center items-center max-sm:h-screen  bg-[#172525]"><center>
 <DotLottieReact autoplay loop className="sm:w-[95%] h-[600px] object-cover max-sm:hidden anim" src="/chakra.json"/>
 <DotLottieReact autoplay className="absolute ml-auto top-0 left-1/2 transform -translate-x-1/2 max-sm:hidden sm:w-[95%] h-[600px] object-cover anim" src="/lotus opening.json"/>
 <DotLottieReact autoplay loop className="absolute ml-auto top-0 left-1/2 transform -translate-x-1/2 sm:hidden max-sm:w-[95%] h-[600px] object-cover mt-auto mb-auto anim" src="/mobile chakras.json"/>

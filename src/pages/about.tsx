@@ -33,7 +33,7 @@ export default function About() {
     </Head>
   <div className="p-10 text-black bg-white">
             <h2 className="urbanist text-[40px] font-bold anim" data-aos="fade-up">Our Story</h2>
-            <Image  alt="Sacred Pause Story thumbnail" data-aos="fade-up" className="mb-5 mt-5 object-cover h-[300px] w-full rounded anim" src="https://images.pexels.com/photos/3820380/pexels-photo-3820380.jpeg"/> 
+            <img  alt="Sacred Pause Story thumbnail" data-aos="fade-up" className="mb-5 mt-5 object-cover h-[300px] w-full rounded anim" src="https://images.pexels.com/photos/3820380/pexels-photo-3820380.jpeg"/> 
             <p className="urbanist anim" data-aos="fade-right">
               In the bustling marketplace of modern wellness, Sacred Pause was born from a different calling. We witnessed too many searching for transformation in all the wrong places: chasing the next technique, the perfect guru, the instant breakthrough.
               Our founders, after decades of their own spiritual seeking across India's ashrams and sacred sites, understood a profound truth: transformation doesn't happen through force or perfection. It unfolds in the spaces between breaths, in moments of genuine stillness, in the courage to simply be present with what is.
@@ -45,11 +45,11 @@ Every aspect of your experience is carefully curated to support your inner unfol
 
           </div>
           <div className="flex mt-5 gap-2 overflow-x-auto bg-[#172525] p-10 rounded">
-                <Image alt="sacred pause gallery" className="h-[300px] w-[400px] object-cover rounded" src="https://images.pexels.com/photos/1234035/pexels-photo-1234035.jpeg"/>
+                <img alt="sacred pause gallery" className="h-[300px] w-[400px] object-cover rounded" src="https://images.pexels.com/photos/1234035/pexels-photo-1234035.jpeg"/>
 
-                <Image alt="sacred pause gallery" className="h-[300px] w-[400px] object-cover rounded" src="https://images.pexels.com/photos/3576284/pexels-photo-3576284.jpeg"/>
+                <img alt="sacred pause gallery" className="h-[300px] w-[400px] object-cover rounded" src="https://images.pexels.com/photos/3576284/pexels-photo-3576284.jpeg"/>
 
-                <Image className="h-[300px] w-[400px] object-cover rounded" src="https://images.pexels.com/photos/906097/pexels-photo-906097.jpeg"/>
+                <img alt="sacred pause gallery" className="h-[300px] w-[400px] object-cover rounded" src="https://images.pexels.com/photos/906097/pexels-photo-906097.jpeg"/>
             </div>
           </>
   );
