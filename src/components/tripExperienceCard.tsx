@@ -2,6 +2,7 @@ import React, { use, useState } from "react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import AOS from "aos";
 import { useEffect } from "react";
+import Link from "next/link";
 
 const ExperienceCard: React.FC=()=>{
     useEffect(()=>{
@@ -81,16 +82,18 @@ const goToSlide = (index: number) => {
                                 <div className="font-semibold">7 Days</div>
                             </div>
                         </div>
-            
+
+                        <Link href="/program">
                         <button 
-                            onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
-                            className="bg-[#172525] text-white px-8 py-4 rounded-full text-[16px] font-semibold hover:bg-[#2a3a3a] transition-all duration-300 shadow-lg"
+                            className="text-[#172525] bg-white px-8 py-4 rounded-full text-[16px] font-semibold hover:bg-[#2a3a3a] transition-all duration-300 shadow-lg"
                         >
                             Book Your Spot →
-                        </button><br/>
+                        </button>
+                        </Link>
+                        <br/>
                         <button 
                             onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
-                            className="text-[#172525] bg-white px-8 py-4 rounded-full text-[16px] font-semibold hover:bg-[#2a3a3a] transition-all duration-300 shadow-lg mt-2"
+                            className="hidden text-[#172525] bg-white px-8 py-4 rounded-full text-[16px] font-semibold hover:bg-[#2a3a3a] transition-all duration-300 shadow-lg mt-2"
                         >
                             Watch Our Video
                         </button>
@@ -136,16 +139,18 @@ const goToSlide = (index: number) => {
                                 <div className="font-semibold">7 Days</div>
                             </div>
                         </div>
-            
+
+                        <Link href="/program">
                         <button 
-                            onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
-                            className="bg-[#172525] text-white px-8 py-4 rounded-full text-[16px] font-semibold hover:bg-[#2a3a3a] transition-all duration-300 shadow-lg"
+                            className="text-[#172525] bg-white px-8 py-4 rounded-full text-[16px] font-semibold hover:bg-[#2a3a3a] transition-all duration-300 shadow-lg"
                         >
                             Book Your Spot →
-                        </button><br/>
+                        </button>
+                        </Link>
+                        <br/>
                         <button 
                             onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
-                            className="text-[#172525] bg-white px-8 py-4 rounded-full text-[16px] font-semibold hover:bg-[#2a3a3a] transition-all duration-300 shadow-lg mt-2"
+                            className="hidden text-[#172525] bg-white px-8 py-4 rounded-full text-[16px] font-semibold hover:bg-[#2a3a3a] transition-all duration-300 shadow-lg mt-2"
                         >
                             Watch Our Video
                         </button>
@@ -191,16 +196,18 @@ const goToSlide = (index: number) => {
                                 <div className="font-semibold">7 Days</div>
                             </div>
                         </div>
-            
+
+                        <Link href="/program">
                         <button 
-                            onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
-                            className="bg-[#172525] text-white px-8 py-4 rounded-full text-[16px] font-semibold hover:bg-[#2a3a3a] transition-all duration-300 shadow-lg"
+                            className="text-[#172525] bg-white px-8 py-4 rounded-full text-[16px] font-semibold hover:bg-[#2a3a3a] transition-all duration-300 shadow-lg"
                         >
                             Book Your Spot →
-                        </button><br/>
+                        </button>
+                        </Link>
+                        <br/>
                         <button 
                             onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
-                            className="text-[#172525] bg-white px-8 py-4 rounded-full text-[16px] font-semibold hover:bg-[#2a3a3a] transition-all duration-300 shadow-lg mt-2"
+                            className="hidden text-[#172525] bg-white px-8 py-4 rounded-full text-[16px] font-semibold hover:bg-[#2a3a3a] transition-all duration-300 shadow-lg mt-2"
                         >
                             Watch Our Video
                         </button>
