@@ -124,7 +124,8 @@ const goToSlide = (index: number) => {
 
     const selectedPkg = packages.find(pkg => pkg.id === selectedPackage);
 
-
+const [isSubmitting, setIsSubmitting] = useState(false);
+const [submitError, setSubmitError] = useState('');
     const [showBookingForm, setShowBookingForm] = useState(false);
 const [selectedPlan, setSelectedPlan] = useState("");
 const [formData, setFormData] = useState({
@@ -157,7 +158,7 @@ const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     }));
 };
 
-const handleFormSubmit = (e: React.FormEvent) => {
+const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Basic validation
@@ -179,24 +180,63 @@ const handleFormSubmit = (e: React.FormEvent) => {
         alert('Please enter a valid 10-digit phone number');
         return;
     }
-    
-    console.log('Booking submitted:', formData);
-    
-    // Here you would typically send the data to your backend
-    // For now, we'll just show a success message
-    alert(`Thank you ${formData.name}! Your booking for ${formData.plan} has been submitted. We'll contact you shortly.`);
-    
-    // Reset form and close
-    setFormData({
-        name: "",
-        phone: "",
-        email: "",
-        tripStartingDate: "2025-03-15",
-        referralCode: "",
-        tripName: "Ladakh Yoga Retreat",
-        plan: ""
-    });
-    closeBookingForm();
+        try {
+        // Prepare the data for API
+        const bookingData = {
+            name: formData.name.trim(),
+            phone: formData.phone.trim(),
+            email: formData.email.trim().toLowerCase(),
+            trip_name: formData.tripName,
+            plan: formData.plan,
+            trip_starting_date: formData.tripStartingDate,
+            referral_code: formData.referralCode.trim() || null,
+            booking_status: 'pending',
+            payment_status: 'pending'
+        };
+        
+        console.log('Submitting booking data:', bookingData);
+        
+        // Make API call to your backend
+        const response = await fetch('/api/booking', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(bookingData)
+        });
+        
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+        }
+        
+        const result = await response.json();
+        console.log('Booking created successfully:', result);
+        
+        // Show success message
+        alert(`Thank you ${formData.name}! Your booking for ${formData.plan} has been submitted successfully. Booking ID: ${result.id}. We'll contact you shortly.`);
+        
+        // Reset form and close
+        setFormData({
+            name: "",
+            phone: "",
+            email: "",
+            tripStartingDate: "2025-03-15",
+            referralCode: "",
+            tripName: "Ladakh Yoga Retreat",
+            plan: ""
+        });
+        closeBookingForm();
+        
+        // Optional: Track the conversion for analytics
+        // trackEvent('booking_submitted', { plan: formData.plan, booking_id: result.id });
+        
+    } catch (error) {
+        console.error('Error submitting booking:', error);
+        setSubmitError(error instanceof Error ? error.message : 'Something went wrong. Please try again.');
+    } finally {
+        setIsSubmitting(false);
+    }
 };
 
 
