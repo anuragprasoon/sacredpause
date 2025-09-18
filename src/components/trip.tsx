@@ -1,28 +1,120 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
-const Trips: React.FC = () => {
+interface Package {
+    id: string;
+    name: string;
+    tagline: string;
+    price: string;
+    duration: string;
+    popular: boolean;
+    features: string[];
+}
+
+interface Testimonial {
+    name: string;
+    rating: number;
+    text: string;
+    avatar: string;
+}
+
+interface ImageGroup {
+    type: string;
+    images: Array<{ src: string; alt: string; } | string>;
+}
+
+interface RetreatData {
+    id: number;
+    title: string;
+    slug: string;
+    description: string;
+    full_description: string;
+    location: string;
+    duration_days: number;
+    duration_text: string;
+    start_date: string;
+    end_date: string;
+    images: ImageGroup[];
+    packages: Package[];
+    inclusions: { list: string[] };
+    exclusions: { list: string[] };
+    value_props: { testimonials: Testimonial[] };
+}
+
+const LoadingSpinner: React.FC = () => (
+    <div className="flex items-center justify-center min-h-[400px]">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500"></div>
+    </div>
+);
+
+interface TripsProps {
+    slug: string;
+}
+
+const Trips: React.FC<TripsProps> = ({ slug }) => {
     const [selectedPackage, setSelectedPackage] = useState("essential");
     const [showFullDescription, setShowFullDescription] = useState(false);
     const [showInclusions, setShowInclusions] = useState(false);
     const [spotsRemaining, setSpotsRemaining] = useState(8);
     const [scrollY, setScrollY] = useState(0);
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
+    const [retreatData, setRetreatData] = useState<RetreatData | null>(null);
 
-    const heroImages = [
-    {
-        src: "https://images.pexels.com/photos/32885140/pexels-photo-32885140.jpeg",
-        alt: "Ladakh Mountain Yoga"
-    },
-    {
-        src: "https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg", 
-        alt: "Monastery Meditation"
-    },
-    {
-        src: "https://images.pexels.com/photos/1051838/pexels-photo-1051838.jpeg",
-        alt: "Sunrise Practice"
-    }
-];
+    useEffect(() => {
+        const fetchRetreatData = async () => {
+            try {
+                setIsLoading(true);
+                const response = await fetch(`/api/getinfo?slug=${slug}`);
+                const result = await response.json();
+                
+                if (result.success && result.data?.[0]) {
+                    // Process the data before setting it
+                    const data = result.data[0];
+                    setRetreatData(data);
+
+                    // Update spots remaining based on start date
+                    if (data.start_date) {
+                        const startDate = new Date(data.start_date);
+                        const now = new Date();
+                        const daysUntilStart = Math.ceil((startDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+                        // Simulate remaining spots based on how close we are to start date
+                        const calculatedSpots = Math.max(1, Math.min(8, Math.floor(daysUntilStart / 7)));
+                        setSpotsRemaining(calculatedSpots);
+                    }
+
+                    // Set initial selected package
+                    const essentialPackage = data.packages?.find(p => p.id === 'essential');
+                    if (essentialPackage) {
+                        setSelectedPackage('essential');
+                    } else if (data.packages?.[0]) {
+                        setSelectedPackage(data.packages[0].id);
+                    }
+                }
+            } catch (error) {
+                console.error('Failed to fetch retreat data:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchRetreatData();
+    }, []);
+
+    const heroImages = retreatData?.images?.find(group => group.type === 'hero')?.images as { src: string; alt: string; }[] || [
+        {
+            src: "https://images.pexels.com/photos/32885140/pexels-photo-32885140.jpeg",
+            alt: "Ladakh Mountain Yoga"
+        },
+        {
+            src: "https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg", 
+            alt: "Monastery Meditation"
+        },
+        {
+            src: "https://images.pexels.com/photos/1051838/pexels-photo-1051838.jpeg",
+            alt: "Sunrise Practice"
+        }
+    ];
 
 
 useEffect(() => {
@@ -45,7 +137,7 @@ const goToSlide = (index: number) => {
     setCurrentSlide(index);
 };
 
-    const packages = [
+    const packages = retreatData?.packages || [
         {
             id: "lite",
             name: "Lite",
@@ -95,7 +187,7 @@ const goToSlide = (index: number) => {
         }
     ];
 
-    const testimonials = [
+    const testimonials = retreatData?.value_props?.testimonials || [
         {
             name: "Sarah M.",
             rating: 5,
@@ -110,7 +202,7 @@ const goToSlide = (index: number) => {
         }
     ];
 
-    const galleryImages = [
+    const galleryImages = retreatData?.images?.find(group => group.type === 'gallery')?.images as string[] || [
         "https://images.pexels.com/photos/32885140/pexels-photo-32885140.jpeg", 
         "https://images.pexels.com/photos/1051838/pexels-photo-1051838.jpeg",
         "https://images.pexels.com/photos/4662438/pexels-photo-4662438.jpeg"
@@ -132,9 +224,9 @@ const [formData, setFormData] = useState({
     name: "",
     phone: "",
     email: "",
-    tripStartingDate: "2025-03-15", // Default to retreat date
+    tripStartingDate: retreatData?.start_date || "2025-03-15",
     referralCode: "",
-    tripName: "Ladakh Yoga Retreat", // Hidden field
+    tripName: retreatData?.title || "Ladakh Yoga Retreat",
     plan: "" // Will be set when form opens
 });
 
@@ -241,17 +333,18 @@ const handleFormSubmit = async (e: React.FormEvent) => {
 
 
 
+    if (isLoading) {
+        return <LoadingSpinner />;
+    }
+
     return (
-
-
-
         <div className="min-h-screen bg-white text-black">
             {/* Hero Section */}
            {/* Hero Section */}
 <div className="relative h-screen overflow-hidden">
     {/* Carousel Images */}
     <div className="relative w-full h-full">
-        {heroImages.map((image, index) => (
+        {heroImages.map((image: { src: string; alt: string }, index: number) => (
             <img
                 key={index}
                 className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ${
@@ -283,7 +376,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
 
     {/* Slide Indicators */}
     <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-20 flex gap-2">
-        {heroImages.map((_, index) => (
+        {heroImages.map((_: any, index: number) => (
             <button
                 key={index}
                 onClick={() => goToSlide(index)}
@@ -305,7 +398,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
     <div className="absolute inset-0 flex items-center justify-center text-center text-white z-10 p-4">
         <div className="max-w-lg">
             <h1 className="text-[32px] sm:text-[48px] font-bold mb-4 leading-tight">
-                Awaken in Ladakh
+                Awaken in {retreatData?.location || "Ladakh"}
             </h1>
             <p className="text-[16px] sm:text-[18px] mb-6 opacity-90">
                 7 days of transformation in the Himalayas
@@ -319,11 +412,11 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                 </div>*/}
                 <div className="text-center">
                     <div className="opacity-70 uppercase tracking-wide">Location</div>
-                    <div className="font-semibold">Leh, Ladakh</div>
+                    <div className="font-semibold">{retreatData?.location || "Leh, Ladakh"}</div>
                 </div>
                 <div className="text-center">
                     <div className="opacity-70 uppercase tracking-wide">Duration</div>
-                    <div className="font-semibold">7 Days</div>
+                    <div className="font-semibold">{retreatData?.duration_days || "7 Days"}</div>
                 </div>
             </div>
 
@@ -358,16 +451,14 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                     {/* Main Description */}
                     <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 mb-8">
                         <p className="text-[16px] leading-relaxed text-gray-700 mb-4">
-                            Escape to Ladakh's sacred mountains where ancient wisdom meets breathtaking beauty. Our 7-day immersive retreat takes you beyond typical yoga vacations into a profound journey of self-discovery.
+                            {retreatData?.description || `Escape to Ladakh's sacred mountains where ancient wisdom meets breathtaking beauty. Our 7-day immersive retreat takes you beyond typical yoga vacations into a profound journey of self-discovery.`}
                         </p>
                         
                         {showFullDescription && (
                             <div className="space-y-4 text-[15px] leading-relaxed text-gray-600">
                                 <p>
-                                    Wake each morning to crisp mountain air and golden sunrise over snow-capped peaks. Practice yoga in ancient monasteries where Buddhist monks have meditated for centuries. Explore hidden valleys and sacred sites that few travelers ever see.
-                                </p>
-                                <p>
-                                    This isn't just about perfecting your asanas—it's about returning home with tools for lifelong peace, clarity, and joy. Our expert teachers blend traditional practices with Himalayan wisdom and healing rituals.
+                                   {retreatData?.full_description || `Wake each morning to crisp mountain air and golden sunrise over snow-capped peaks. Practice yoga in ancient monasteries where Buddhist monks have meditated for centuries. Explore hidden valleys and sacred sites that few travelers ever see.
+                                    This isn't just about perfecting your asanas—it's about returning home with tools for lifelong peace, clarity, and joy. Our expert teachers blend traditional practices with Himalayan wisdom and healing rituals.`}
                                 </p>
                             </div>
                         )}
@@ -710,7 +801,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                     {/* Testimonials */}
                     <h3 className="text-[24px] font-bold text-[#172525] mb-6">What People Say</h3>
                     <div className="space-y-4 mb-6">
-                        {testimonials.map((testimonial, index) => (
+                        {testimonials.map((testimonial: Testimonial, index: number) => (
                             <div key={index} className="bg-gray-50 rounded-xl p-6 text-left">
                                 <div className="flex items-center gap-3 mb-3">
                                     <div className="w-10 h-10 bg-[#172525] text-white rounded-full flex items-center justify-center font-semibold">
@@ -738,7 +829,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                 <div className="max-w-4xl mx-auto">
                     <h3 className="text-[20px] sm:text-[24px] font-bold text-[#172525] mb-6">Gallery</h3>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                        {galleryImages.map((image, index) => (
+                        {galleryImages.map((image: string, index: number) => (
                             <img
                                 key={index}
                                 className="w-full h-32 sm:h-40 object-cover rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer shadow-sm"

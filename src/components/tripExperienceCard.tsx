@@ -83,7 +83,7 @@ const goToSlide = (index: number) => {
                             </div>
                         </div>
 
-                        <Link href="/program">
+                        <Link href="/retreat/ladakh">
                         <button 
                             className="text-[#172525] bg-white px-8 py-4 rounded-full text-[16px] font-semibold hover:bg-[#2a3a3a] transition-all duration-300 shadow-lg"
                         >
@@ -140,7 +140,7 @@ const goToSlide = (index: number) => {
                             </div>
                         </div>
 
-                        <Link href="/program">
+                        <Link href="/retreat/rishikesh">
                         <button 
                             className="text-[#172525] bg-white px-8 py-4 rounded-full text-[16px] font-semibold hover:bg-[#2a3a3a] transition-all duration-300 shadow-lg"
                         >
@@ -197,7 +197,7 @@ const goToSlide = (index: number) => {
                             </div>
                         </div>
 
-                        <Link href="/program">
+                        <Link href="/retreat/dharmshala">
                         <button 
                             className="text-[#172525] bg-white px-8 py-4 rounded-full text-[16px] font-semibold hover:bg-[#2a3a3a] transition-all duration-300 shadow-lg"
                         >
@@ -233,7 +233,7 @@ const goToSlide = (index: number) => {
         <div className="text-[14px]">3 Days| 5 Days | 7days </div>
         </div>
         <div className="p-2">
-        <a href="/program"><button className="rounded-full w-[100px] p-2 bg-white text-black" >View</button></a>
+        <a href="/retreat/ladakh"><button className="rounded-full w-[100px] p-2 bg-white text-black" >Book Now</button></a>
         </div>
     </div>
 </div>
@@ -246,7 +246,7 @@ const goToSlide = (index: number) => {
         <div className="text-[14px]">3 Days| 5 Days | 7days </div>
         </div>
         <div className="p-2">
-        <a href="/program"><button className="rounded-full w-[100px] p-2 bg-white text-black">View</button></a>
+        <a href="/retreat/rishikesh"><button className="rounded-full w-[100px] p-2 bg-white text-black">Book Now</button></a>
         </div>
     </div>
 </div>
@@ -259,7 +259,7 @@ const goToSlide = (index: number) => {
         <div className="text-[14px]">3 Days| 5 Days | 7days </div>
         </div>
         <div className="p-2">
-        <a href="/program"><button className="rounded-full w-[100px] p-2 bg-white text-black">View</button></a>
+        <a href="/retreat/dharmshala"><button className="rounded-full w-[100px] p-2 bg-white text-black">Book Now</button></a>
         </div>
     </div>
 </div>
