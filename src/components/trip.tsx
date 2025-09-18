@@ -342,12 +342,9 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                 key={index}
                 aria-label={`Slide ${index + 1}`}
                 onClick={() => goToSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentSlide 
-                        ? 'bg-white' 
-                        : 'bg-white/50 hover:bg-white/70'
-                }`}
-            />
+                className={`p-3 rounded-full transition-all duration-300`}>
+                <span className={`w-3 h-3 block rounded-full ${index === currentSlide ? 'bg-white' : 'bg-white/50 hover:bg-white/70'}`}></span>
+            </button>
         ))}
     </div>
     
@@ -494,7 +491,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                             <div className="bg-white border-2 border-[#172525] rounded-2xl p-6">
                                 <div className="text-center mb-4">
                                     {selectedPkg.popular && (
-                                        <div className="inline-block bg-orange-500 text-white text-[12px] px-3 py-1 rounded-full font-semibold mb-2">
+                                        <div className="inline-block bg-orange-700 text-white text-[12px] px-3 py-1 rounded-full font-semibold mb-2">
                                             ⭐ Most Popular
                                         </div>
                                     )}
@@ -531,7 +528,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                                 }`}
                             >
                                 {pkg.popular && (
-                                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-orange-500 text-white text-[12px] px-4 py-1 rounded-full font-semibold">
+                                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-orange-700 text-white text-[12px] px-4 py-1 rounded-full font-semibold">
                                         ⭐ Most Popular
                                     </div>
                                 )}
