@@ -137,55 +137,7 @@ const goToSlide = (index: number) => {
     setCurrentSlide(index);
 };
 
-    const packages = retreatData?.packages || [
-        {
-            id: "lite",
-            name: "Lite",
-            tagline: "Perfect Start",
-            price: "₹12,999",
-            duration: "5 Days",
-            popular: false,
-            features: [
-                "Shared accommodation",
-                "Daily yoga sessions", 
-                "Breakfast + 4 dinners",
-                "Airport transfers",
-                "Welcome ceremony"
-            ]
-        },
-        {
-            id: "essential",
-            name: "Essential", 
-            tagline: "Complete Experience",
-            price: "₹19,999",
-            duration: "5 Days",
-            popular: true,
-            features: [
-                "Private room",
-                "All meals included",
-                "2 guided excursions", 
-                "1 spa treatment",
-                "Meditation workshop",
-                "Yoga props included"
-            ]
-        },
-        {
-            id: "premium",
-            name: "Premium",
-            tagline: "Ultimate Luxury", 
-            price: "₹26,999",
-            duration: "5 Days",
-            popular: false,
-            features: [
-                "Luxury villa",
-                "2 private sessions",
-                "Daily spa treatments",
-                "All excursions + private tour", 
-                "Personal consultation",
-                "Professional photoshoot"
-            ]
-        }
-    ];
+    const packages = retreatData?.packages || [];
 
     const testimonials = retreatData?.value_props?.testimonials || [
         {
@@ -226,7 +178,7 @@ const [formData, setFormData] = useState({
     email: "",
     tripStartingDate: retreatData?.start_date || "2025-03-15",
     referralCode: "",
-    tripName: retreatData?.title || "Ladakh Yoga Retreat",
+    tripName: retreatData?.title || "not found",
     plan: "" // Will be set when form opens
 });
 
@@ -315,7 +267,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
             email: "",
             tripStartingDate: "2025-03-15",
             referralCode: "",
-            tripName: "Ladakh Yoga Retreat",
+            tripName: retreatData?.title || "Not fetched",
             plan: ""
         });
         closeBookingForm();
@@ -398,10 +350,10 @@ const handleFormSubmit = async (e: React.FormEvent) => {
     <div className="absolute inset-0 flex items-center justify-center text-center text-white z-10 p-4">
         <div className="max-w-lg">
             <h1 className="text-[32px] sm:text-[48px] font-bold mb-4 leading-tight">
-                Awaken in {retreatData?.location || "Ladakh"}
+                Awaken in {retreatData?.title}
             </h1>
             <p className="text-[16px] sm:text-[18px] mb-6 opacity-90">
-                7 days of transformation in the Himalayas
+                7 days of transformation in the {retreatData?.slug}
             </p>
             
             {/* Hero Details */}
@@ -412,11 +364,11 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                 </div>*/}
                 <div className="text-center">
                     <div className="opacity-70 uppercase tracking-wide">Location</div>
-                    <div className="font-semibold">{retreatData?.location || "Leh, Ladakh"}</div>
+                    <div className="font-semibold">{retreatData?.location}</div>
                 </div>
                 <div className="text-center">
                     <div className="opacity-70 uppercase tracking-wide">Duration</div>
-                    <div className="font-semibold">{retreatData?.duration_days || "7 Days"}</div>
+                    <div className="font-semibold">{retreatData?.duration_text}</div>
                 </div>
             </div>
 
@@ -451,14 +403,13 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                     {/* Main Description */}
                     <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 mb-8">
                         <p className="text-[16px] leading-relaxed text-gray-700 mb-4">
-                            {retreatData?.description || `Escape to Ladakh's sacred mountains where ancient wisdom meets breathtaking beauty. Our 7-day immersive retreat takes you beyond typical yoga vacations into a profound journey of self-discovery.`}
+                            {retreatData?.description}
                         </p>
                         
                         {showFullDescription && (
                             <div className="space-y-4 text-[15px] leading-relaxed text-gray-600">
                                 <p>
-                                   {retreatData?.full_description || `Wake each morning to crisp mountain air and golden sunrise over snow-capped peaks. Practice yoga in ancient monasteries where Buddhist monks have meditated for centuries. Explore hidden valleys and sacred sites that few travelers ever see.
-                                    This isn't just about perfecting your asanas—it's about returning home with tools for lifelong peace, clarity, and joy. Our expert teachers blend traditional practices with Himalayan wisdom and healing rituals.`}
+                                   {retreatData?.full_description}
                                 </p>
                             </div>
                         )}
