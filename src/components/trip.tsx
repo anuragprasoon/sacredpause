@@ -84,7 +84,7 @@ const Trips: React.FC<TripsProps> = ({ slug }) => {
                     }
 
                     // Set initial selected package
-                    const essentialPackage = data.packages?.find(p => p.id === 'essential');
+                    const essentialPackage = data.packages?.find((p: Package) => p.id === 'essential');
                     if (essentialPackage) {
                         setSelectedPackage('essential');
                     } else if (data.packages?.[0]) {
