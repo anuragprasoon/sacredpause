@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Head from "next/head";
 
 interface Package {
     id: string;
@@ -230,7 +231,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
             name: formData.name.trim(),
             phone: formData.phone.trim(),
             email: formData.email.trim().toLowerCase(),
-            trip_name: formData.tripName,
+            trip_name: retreatData?.title || "not found",
             plan: formData.plan,
             trip_starting_date: formData.tripStartingDate,
             referral_code: formData.referralCode.trim() || null,
@@ -289,7 +290,15 @@ const handleFormSubmit = async (e: React.FormEvent) => {
         return <LoadingSpinner />;
     }
 
-    return (
+    return (<>
+        <Head>
+            <title>{retreatData ? `Join the ${retreatData.title} Yoga Retreat | Sacred Pause` : 'Yoga Retreat | Sacred Pause'}</title>  
+            <meta name="description" content={retreatData?.description || "Join us for a transformative yoga retreat in the breathtaking landscapes of Ladakh. Rejuvenate your mind, body, and soul with expert guidance and serene surroundings."} /> 
+            <meta property="og:title" content={retreatData ? `Join the ${retreatData.title} Yoga Retreat | Sacred Pause` : 'Yoga Retreat | Sacred Pause'} />
+            <meta property="og:description" content={retreatData?.description || "Join us for a transformative yoga retreat in the breathtaking landscapes of Ladakh. Rejuvenate your mind, body, and soul with expert guidance and serene surroundings."} />
+            <meta property="og:image" content={'https://images.pexels.com/photos/32885140/pexels-photo-32885140.jpeg'} />
+
+        </Head>
         <div className="min-h-screen bg-white text-black">
             {/* Hero Section */}
            {/* Hero Section */}
@@ -331,6 +340,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
         {heroImages.map((_: any, index: number) => (
             <button
                 key={index}
+                aria-label={`Slide ${index + 1}`}
                 onClick={() => goToSlide(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     index === currentSlide 
@@ -473,7 +483,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                                     <div className="text-[14px] font-semibold">{pkg.name}</div>
                                     <div className="text-[12px] opacity-80">{pkg.price}</div>
                                     {pkg.popular && (
-                                        <div className="text-[10px] bg-orange-500 text-white px-1 rounded mt-1">Popular</div>
+                                        <div className="text-[10px] bg-orange-700 text-white px-1 rounded mt-1">Popular</div>
                                     )}
                                 </button>
                             ))}
@@ -792,6 +802,7 @@ const handleFormSubmit = async (e: React.FormEvent) => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 
