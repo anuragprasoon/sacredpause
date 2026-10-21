@@ -57,6 +57,9 @@ const Footer: React.FC = () => {
             <div className="max-md:px-5">
               <h3 className="text-white font-bold">Our Services</h3>
               <div className="mt-6 hover:text-white transition-colors cursor-pointer">
+                <Link href={'/yoga'}>Online Yoga Classes</Link>
+              </div>
+              <div className="mt-6 hover:text-white transition-colors cursor-pointer">
                 <Link href={'/#discover'}>Lite Yoga Retreats</Link>
               </div>
               <div className="mt-6 hover:text-white transition-colors cursor-pointer">
