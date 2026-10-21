@@ -1,67 +1,91 @@
 import { useCallback, useEffect, useState } from "react";
 import Head from "next/head";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import Link from "next/link";
+import { Inter, Inter_Tight } from "next/font/google";
 import YogaModal from "@/components/yogamodal";
-import { PLANS, BATCHES, FAQS, TRIAL_ID } from "@/components/yogadata";
+import { PLANS, FAQS, TRIAL_ID } from "@/components/yogadata";
+import s from "@/styles/yoga.module.css";
 
-const TITLE = "Online Yoga Classes | Join Free 14-Day Trial | Sacred Pause";
+const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-inter", display: "swap" });
+const tight = Inter_Tight({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-tight", display: "swap" });
+
+const TITLE = "Yoga for 35+ | Gentle Live Online Classes | Free 14-Day Trial | Sacred Pause";
 const DESC =
-  "Try live yoga free for 14 days. 45-minute classes, 5 days a week, with a certified 500-hour teacher. Real-time posture correction, HD recordings and plans from ₹399/month.";
+  "Gentle, guided live yoga for adults 35+. Less stiffness, better sleep, more energy. Try 14 days free. 45-minute classes, 5 days a week, with a certified 500-hour teacher.";
 
-const SLIDES = [
-  "https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg",
-  "https://images.pexels.com/photos/1051838/pexels-photo-1051838.jpeg",
-  "https://images.pexels.com/photos/32885140/pexels-photo-32885140.jpeg",
+const PAIN_LEFT = [
+  "You wake up stiff, and your back and knees take a while to “start working.”",
+  "Hours at a desk have left you with a sore neck and an aching lower back.",
+];
+const PAIN_RIGHT = [
+  "You're tired all day but wide awake at 2 a.m.",
+  "The gym feels intimidating, and high-intensity workouts feel risky now.",
 ];
 
-const Icon = ({ d }: { d: string }) => (
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2E524A" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-    <path d={d} />
+const BENEFITS: [string, string, string][] = [
+  ["Ease aches and stiffness", "Gentle mobility for back, neck, hips and knees.", "M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5"],
+  ["Sleep deeply again", "Calming breathwork to wind down at night.", "M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"],
+  ["Less stress", "Simple ways to settle a racing mind.", "M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"],
+  ["Strength and balance", "Stay steady and independent every day.", "M6.5 6.5v11M17.5 6.5v11M3 9v6M21 9v6M6.5 12h11"],
+];
+
+const PROFESSIONALS = [
+  "45-minute live classes, morning and evening",
+  "Desk-friendly neck, shoulder and back relief",
+  "Quick stress resets between calls",
+];
+const RETIRED = [
+  "Slower pace with chair and wall support",
+  "Joint health, balance and flexibility",
+  "Saturday group session to meet people",
+];
+
+const PLAN_NOTES: Record<string, string> = {
+  "1-month": "A simple way to start.",
+  "3-months": "Build a routine. Parents Care Pack +₹1,499.",
+  "6-months": "Lower daily cost. Parents Care Pack +₹2,499.",
+  "12-months": "Best value for a full year.",
+};
+
+const Check = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+    <circle cx="12" cy="12" r="11" fill="#0E9272" />
+    <path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
-const FEATURES = [
-  { t: "14-day FREE trial", d: "M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" },
-  { t: "Daily LIVE classes", d: "M3 7h13a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H3zM18 10l4-2v8l-4-2" },
-  { t: "Real-time posture feedback", d: "M20 6L9 17l-5-5" },
-  { t: "HD recordings, 24x7", d: "M5 3l14 9-14 9z" },
-  { t: "Switch batches freely", d: "M17 1l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4M21 13v2a4 4 0 0 1-4 4H3" },
-];
-
-const BENEFITS = [
-  ["More energy, better sleep", "Wake up feeling lighter and help your nervous system wind down before bed."],
-  ["Move better", "Ease stiffness and build strength in the back, hips and knees."],
-  ["Teacher-led & safe", "Not a pre-recorded video. A real teacher watches your camera and corrects you live."],
-  ["A routine that sticks", "Simple 45-minute sessions that favour consistency over intensity."],
-];
-
-const Heading = ({ children, light }: { children: React.ReactNode; light?: boolean }) => (
-  <h2 className={`urbanist text-[40px] max-sm:text-[32px] font-extrabold leading-tight inline-block border-b-2 border-dashed pb-2 ${light ? "text-white border-[#E4A689]" : "text-[#171612] border-[#2E524A]"}`}>
-    {children}
-  </h2>
-);
+const Lotus = () => <img src="/logo.png" alt="Sacred Pause" className={s.logo} />;
 
 export default function Yoga() {
-  const [open, setOpen] = useState<number | null>(0);
-  const [slide, setSlide] = useState(0);
   const [modal, setModal] = useState({ open: false, plan: TRIAL_ID, skipPlanStep: false });
-  const openModal = (planId?: string) =>
-    setModal({ open: true, plan: planId ?? TRIAL_ID, skipPlanStep: Boolean(planId) });
+  const openModal = (planId?: string) => setModal({ open: true, plan: planId ?? TRIAL_ID, skipPlanStep: Boolean(planId) });
   const closeModal = useCallback(() => setModal((m) => ({ ...m, open: false })), []);
 
+  // Scroll-reveal, same idea as the reference site's .rv / .in
   useEffect(() => {
-    AOS.init({ duration: 1000, once: true });
-    const id = setInterval(() => setSlide((s) => (s + 1) % SLIDES.length), 5000);
-    return () => clearInterval(id);
+    const els = document.querySelectorAll<HTMLElement>(`.${s.rv}`);
+    const io = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add(s.rvIn);
+            io.unobserve(e.target);
+          }
+        }),
+      { threshold: 0.12 }
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
   }, []);
 
+  const rv = s.rv;
+
   return (
-    <>
+    <div className={`${s.root} ${inter.variable} ${tight.variable}`}>
       <Head>
         <title>{TITLE}</title>
         <meta name="description" content={DESC} />
-        <meta name="keywords" content="online yoga classes, live yoga, yoga for professionals, yoga for parents, yoga membership india" />
+        <meta name="keywords" content="yoga for 35+, yoga for seniors, online yoga classes india, yoga for back pain, yoga for retired, live yoga" />
         <meta name="author" content="Sacred Pause" />
         <meta property="og:title" content={TITLE} />
         <meta property="og:description" content={DESC} />
@@ -75,239 +99,288 @@ export default function Yoga() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* Hero carousel */}
-      <section className="relative h-[85vh] min-h-[520px] overflow-hidden bg-[#172525] urbanist text-white">
-        {SLIDES.map((src, i) => (
-          <img
-            key={src}
-            src={src}
-            alt="Online yoga class"
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${i === slide ? "opacity-100" : "opacity-0"}`}
-          />
-        ))}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#172525] via-[#172525]/60 to-[#172525]/20" />
-        <div className="relative h-full flex flex-col justify-end items-center text-center p-10 pb-20">
-          <span className="bg-[#E4A689] text-black text-[13px] font-bold rounded-full px-4 py-1 mb-4">14 DAYS FREE · NO PAYMENT TO REGISTER</span>
-          <h1 className="font-extrabold text-[64px] max-sm:text-[42px] leading-[1.05]">
-            Live daily yoga,
-            <br />
-            from your home
-          </h1>
-          <p className="text-[20px] mt-3 text-[#EBDBCB]">For busy professionals &amp; parents</p>
-          <button onClick={() => openModal()} className="p-4 px-8 bg-white text-black mt-6 rounded-full font-semibold hover:bg-[#E4A689] transition-colors">
-            Start Free 14-Day Trial
-          </button>
-          <div className="flex gap-2 mt-8">
-            {SLIDES.map((_, i) => (
-              <button
-                key={i}
-                aria-label={`Slide ${i + 1}`}
-                onClick={() => setSlide(i)}
-                className={`h-2 rounded-full transition-all ${i === slide ? "w-6 bg-white" : "w-2 bg-white/50"}`}
-              />
-            ))}
+      <div className={s.sheet} id="top">
+        {/* Nav */}
+        <nav className={s.nav}>
+          <a href="#top" className={s.brand}>
+            <Lotus /> Sacred Pause
+          </a>
+          <div className={s.navLinks}>
+            <a href="#benefits">Benefits</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#faq">FAQ</a>
           </div>
-        </div>
-      </section>
+          <div className={s.navRight}>
+            <Link href="/" className={s.navSite}>Retreats</Link>
+            <button className={`${s.btn} ${s.btnBlue}`} onClick={() => openModal()}>
+              Free Trial
+            </button>
+          </div>
+        </nav>
 
-      {/* Feature strip */}
-      <section className="bg-[#F9FFE8] urbanist text-[#171612] py-8 px-5">
-        <div className="max-w-[1100px] mx-auto grid grid-cols-2 sm:grid-cols-5 gap-6 text-center">
-          {FEATURES.map((f) => (
-            <div key={f.t} className="flex flex-col items-center gap-2" data-aos="fade-up">
-              <Icon d={f.d} />
-              <span className="text-[14px] font-semibold">{f.t}</span>
+        {/* Hero */}
+        <div className={s.heroFrame}>
+          <header className={s.hero}>
+            <span className={s.heroBadge}>14 days free · No payment to register</span>
+            <h1>
+              Your body has carried you this far. Let's help it <span className={s.accent}>go further.</span>
+            </h1>
+            <p className={s.heroSub}>
+              Gentle, guided live yoga for people 35+. Less stiffness, better sleep, more energy.
+            </p>
+            <div className={s.heroCta}>
+              <button className={`${s.btn} ${s.btnBlue} ${s.btnLg}`} onClick={() => openModal()}>
+                Book Your Free Trial Class
+              </button>
+              <a href="#pricing" className={`${s.btn} ${s.btnGhost} ${s.btnLg}`}>
+                View Plans
+              </a>
             </div>
-          ))}
+            <p className={s.heroFine}>No experience or flexibility needed. Options for every body.</p>
+            <div className={s.heroPicWrap}>
+              <img className={s.heroPic} src="https://images.pexels.com/photos/3576284/pexels-photo-3576284.jpeg" alt="Meditating outdoors" />
+              <span className={`${s.chip} ${s.chipA}`}><i className={s.chipDot} /> Live · 45 min</span>
+              <span className={`${s.chip} ${s.chipB}`}>🌿 14 days free</span>
+            </div>
+          </header>
         </div>
-      </section>
 
-      {/* Schedule */}
-      <section className="bg-white urbanist text-[#171612] p-10 text-center overflow-x-hidden">
-        <Heading>Live class schedule</Heading>
-        <p className="mt-4 text-[#2E524A]">45 minutes, Monday to Friday. Pick the batch that fits your day.</p>
-        <div className="flex flex-col sm:flex-row gap-5 justify-center mt-8 max-w-[800px] mx-auto">
-          {Object.entries(BATCHES).map(([group, times], i) => (
-            <div
-              key={group}
-              data-aos={i === 0 ? "fade-right" : "fade-left"}
-              className={`flex-1 rounded-xl p-8 ${i === 0 ? "bg-[#E8E8EB]" : "bg-[#2E524A] text-white"}`}
-            >
-              <div className={`font-bold text-[20px] mb-4 ${i === 0 ? "" : "text-[#EBDBCB]"}`}>{group}</div>
-              <div className="flex gap-2 flex-wrap justify-center">
-                {times.map((t) => (
-                  <span key={t} className={`rounded-full px-4 py-2 text-[14px] font-semibold ${i === 0 ? "bg-white" : "bg-white/15"}`}>
-                    {t}
-                  </span>
+        {/* Problem */}
+        <section className={s.sect}>
+          <div className={s.wrap}>
+            <div className={`${s.headC} ${rv}`}>
+              <span className={s.pill}>Sound familiar?</span>
+              <h2 className={s.h2}>Your body is asking for a different kind of care</h2>
+            </div>
+            <div className={`${s.painStage} ${rv}`}>
+              <div className={s.painCol}>
+                {PAIN_LEFT.map((t) => (
+                  <div key={t} className={s.painCard}>{t}</div>
+                ))}
+              </div>
+              <img className={s.painPhoto} src="https://images.pexels.com/photos/3820380/pexels-photo-3820380.jpeg" alt="Feeling stiff and tired" />
+              <div className={s.painCol}>
+                {PAIN_RIGHT.map((t) => (
+                  <div key={t} className={s.painCard}>{t}</div>
                 ))}
               </div>
             </div>
-          ))}
-        </div>
-        <p className="mt-6 text-[14px] text-[#2E524A]">Saturday: group discussion &amp; doubts session with your teacher.</p>
-        <button onClick={() => openModal()} className="mt-6 p-3 px-6 bg-[#2E524A] text-white rounded-full font-semibold">
-          Join Free for 14 Days
-        </button>
-      </section>
-
-      {/* Teacher */}
-      <section className="sm:flex bg-black text-white urbanist overflow-hidden">
-        <div className="sm:w-[50%] p-10 sm:p-16 flex flex-col justify-center" data-aos="fade-right">
-          <span className="text-[#E4A689] text-[16px]">YOUR TEACHER</span>
-          <h2 className="text-[40px] max-sm:text-[32px] font-extrabold leading-tight">
-            Ankit Mishra.
-            <br />
-            Making yoga simple.
-          </h2>
-          <p className="text-[18px] mt-3 font-semibold text-[#EBDBCB]">Certified 500-hour teacher · 5 years of experience</p>
-          <p className="font-light mt-3">
-            Every class is designed to be easy to follow and safe to practise. Your teacher watches your camera stream live and gives real-time posture correction and safety feedback, something no pre-recorded video can do.
-          </p>
-          <div>
-            <button onClick={() => openModal()} className="mt-6 p-3 px-6 bg-[#E4A689] text-black rounded-full font-semibold">
-              Try a Class Free
-            </button>
+            <div className={`${s.painNote} ${rv}`}>
+              <span className={s.heart}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden>
+                  <path d="M12 21s-7.5-4.6-9.6-9.3C.9 8.2 3 4.5 6.6 4.5c2 0 3.7 1.1 4.4 2.7.7-1.6 2.4-2.7 4.4-2.7 3.6 0 5.7 3.7 4.2 7.2C19.5 16.4 12 21 12 21z" />
+                </svg>
+              </span>
+              It doesn't have to be this way.
+            </div>
           </div>
-        </div>
-        <img
-          alt="Yoga teacher"
-          data-aos="fade-left"
-          src="https://images.pexels.com/photos/3820380/pexels-photo-3820380.jpeg"
-          className="sm:w-[50%] w-full h-[360px] sm:h-auto object-cover"
-        />
-      </section>
+        </section>
 
-      {/* Pricing */}
-      <section className="p-10 bg-white urbanist text-black text-center" id="pricing">
-        <Heading>Simple Plans. No surprises.</Heading>
-        <ul className="max-w-[560px] mx-auto text-left mt-6 space-y-2 text-[#2E524A]">
-          {[
-            "Live, teacher-led classes 5 days a week",
-            "Saturday group discussion & doubts session",
-            "Unlimited HD recordings, 24x7 replay library",
-            "Flexible batches at no extra cost",
-          ].map((t) => (
-            <li key={t} className="flex gap-2">
-              <span className="text-[#E4A689] font-bold">✓</span>
-              {t}
-            </li>
-          ))}
-        </ul>
-        <div
-          data-aos="zoom-in"
-          className="max-w-[900px] mx-auto mt-8 rounded-2xl bg-gradient-to-r from-[#172525] to-[#2E524A] text-white p-8 sm:flex items-center justify-between gap-6 text-left"
-        >
-          <div>
-            <span className="bg-[#E4A689] text-black text-[12px] font-bold rounded-full px-3 py-1">START HERE</span>
-            <div className="text-[32px] max-sm:text-[26px] font-extrabold mt-3">14-Day Free Trial</div>
-            <p className="text-[#EBDBCB]">Full access to live classes, recordings and your teacher's feedback. No payment needed to register.</p>
-          </div>
-          <button
-            onClick={() => openModal()}
-            className="max-sm:mt-5 whitespace-nowrap bg-white text-black font-semibold rounded-full p-4 px-8 hover:bg-[#E4A689] transition-colors"
-          >
-            Start Free Trial
-          </button>
-        </div>
-        <p className="mt-8 text-[#2E524A] font-semibold">Ready to commit? Pick a plan</p>
-        <div className="flex flex-col sm:flex-row gap-5 justify-center items-stretch mt-4">
-          {PLANS.filter((p) => p.id !== TRIAL_ID).map((p) => {
-            const hl = p.id === "3-months";
-            return (
-              <div
-                key={p.id}
-                data-aos="fade-up"
-                className={`relative rounded-xl p-8 sm:w-[240px] text-center flex flex-col ${hl ? "bg-[#172525] text-white" : "bg-[#E8E8EB]"}`}
-              >
-                {hl && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#E4A689] text-black text-[12px] font-bold rounded-full px-3 py-1">
-                    MOST POPULAR
-                  </span>
-                )}
-                <div className="font-semibold">{p.label}</div>
-                <div className="text-[36px] font-extrabold my-2">₹{p.price.toLocaleString("en-IN")}</div>
-                <div className={hl ? "text-[#E4A689]" : "text-[#2E524A]"}>₹{p.perDay} / day</div>
-                {p.careAddOn && (
-                  <div className="text-[13px] my-3 opacity-80">
-                    Parents Care Pack with live dietician Q&amp;A: ₹{p.careAddOn.toLocaleString("en-IN")}
+        {/* Benefits */}
+        <section id="benefits">
+          <div className={s.outFrame}>
+            <div className={`${s.headC} ${rv}`} style={{ marginBottom: 40 }}>
+              <span className={`${s.pill} ${s.outPill}`}>Benefits</span>
+              <h2 className={s.h2}>Gentle yoga, real results</h2>
+            </div>
+            <div className={s.outGrid}>
+              {BENEFITS.map(([t, d, icon]) => (
+                <div key={t} className={`${s.outCard} ${rv}`}>
+                  <div className={s.outIcon}>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0E9272" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                      <path d={icon} />
+                    </svg>
                   </div>
-                )}
-                <button
-                  onClick={() => openModal(p.id)}
-                  className={`mt-auto p-3 rounded-full font-semibold ${hl ? "bg-white text-black" : "bg-[#2E524A] text-white"}`}
-                >
-                  Choose Plan
-                </button>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-
-      {/* Benefits */}
-      <section className="bg-[#E8E8EB] urbanist text-[#171612] p-10 text-center">
-        <Heading>Why people stay</Heading>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-[1100px] mx-auto mt-8 text-left">
-          {BENEFITS.map(([t, d]) => (
-            <div key={t} className="bg-white rounded-xl p-6" data-aos="fade-up">
-              <div className="text-[20px] font-bold text-[#2E524A]">{t}</div>
-              <p className="mt-2 text-[15px]">{d}</p>
+                  <h3 className={s.h3}>{t}</h3>
+                  <p>{d}</p>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="p-10 bg-white urbanist text-black" id="faq">
-        <div className="text-center mb-8">
-          <Heading>Frequently asked questions</Heading>
-        </div>
-        <div className="max-w-[800px] mx-auto">
-          {FAQS.map((f, i) => (
-            <div key={f.q} className="border-b border-[#E8E8EB]">
-              <button
-                className="w-full flex justify-between items-center text-left py-4 font-semibold text-[18px]"
-                onClick={() => setOpen(open === i ? null : i)}
-                aria-expanded={open === i}
-              >
-                {f.q}
-                <span className="text-[#E4A689] text-[24px] ml-4">{open === i ? "−" : "+"}</span>
+            <div style={{ textAlign: "center", margin: "32px 0 18px" }}>
+              <button className={`${s.btn} ${s.btnBlue} ${s.btnLg}`} onClick={() => openModal()}>
+                Book Your Free Trial Class
               </button>
-              {open === i && <p className="pb-4 text-[#2E524A]">{f.a}</p>}
             </div>
-          ))}
-        </div>
-        <p className="text-center text-[12px] mt-8 text-[#2E524A] max-w-[800px] mx-auto">
-          Our classes are for general health and wellness and do not replace medical advice, diagnosis or treatment. If you have a medical condition, please consult your doctor before starting.
-        </p>
-      </section>
+          </div>
+        </section>
 
-      {/* Closing CTA */}
-      <section className="bg-[#172525] urbanist text-white text-center p-16 max-sm:pb-28">
-        <h2 className="text-[48px] max-sm:text-[34px] font-extrabold leading-tight">
-          Easy to start.
-          <br />
-          <span className="text-[#E4A689]">Easier to continue.</span>
-        </h2>
-        <p className="mt-4 text-[#EBDBCB]">Your first 14 days are on us.</p>
-        <button onClick={() => openModal()} className="p-4 px-8 bg-white text-black mt-6 rounded-full font-semibold hover:bg-[#E4A689] transition-colors">
-          Start Free 14-Day Trial
-        </button>
-      </section>
+        {/* Who it's for */}
+        <section className={s.sect}>
+          <div className={s.wrap}>
+            <div className={`${s.headC} ${rv}`}>
+              <span className={s.pill}>Who it's for</span>
+              <h2 className={s.h2}>Made for the stage of life you're in</h2>
+            </div>
+            <div className={s.twoCol}>
+              <div className={`${s.track} ${rv}`}>
+                <h3 className={s.h3} style={{ fontSize: 24 }}>For Working Professionals</h3>
+                <p className={s.trackQuote}>“I don't have hours. I just need to feel better.”</p>
+                <ul className={s.checks}>
+                  {PROFESSIONALS.map((t) => (
+                    <li key={t}><Check /> {t}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className={`${s.track} ${rv}`}>
+                <h3 className={s.h3} style={{ fontSize: 24 }}>For Retired and Semi-Retired Adults</h3>
+                <p className={s.trackQuote}>“I have the time. I want to use it well.”</p>
+                <ul className={s.checks}>
+                  {RETIRED.map((t) => (
+                    <li key={t}><Check /> {t}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Pricing */}
+        <section className={s.sect} id="pricing" style={{ paddingTop: 20 }}>
+          <div className={s.wrap} style={{ maxWidth: 1100 }}>
+            <div className={`${s.headC} ${rv}`}>
+              <span className={s.pill}>Programs</span>
+              <h2 className={s.h2}>Find the plan that fits your life</h2>
+              <p className={s.lede}>Unlimited live and recorded classes on every plan.</p>
+            </div>
+
+            <div className={`${s.trialCard} ${rv}`}>
+              <div>
+                <span className={s.heroBadge}>Limited-time offer</span>
+                <h3 className={s.h3}>14-Day Free Trial</h3>
+                <p>Full access to live classes and recordings. No payment to register.</p>
+              </div>
+              <button className={`${s.btn} ${s.btnBlue} ${s.btnLg}`} onClick={() => openModal()}>
+                Start Free Trial
+              </button>
+            </div>
+
+            <div className={s.pricingGrid}>
+              {PLANS.filter((p) => p.id !== TRIAL_ID).map((p) => {
+                const featured = p.id === "3-months";
+                return (
+                  <div key={p.id} className={`${s.pCard} ${featured ? s.pFeatured : ""} ${rv}`}>
+                    <div>
+                      <span className={s.pName}>{p.label}</span>
+                      {featured && <span className={s.pBadge}>Popular</span>}
+                    </div>
+                    <div className={s.pPrice}>₹{p.price.toLocaleString("en-IN")}</div>
+                    <div className={s.pPer}>₹{p.perDay} / day</div>
+                    <div className={s.pDivider} />
+                    <p className={s.pNote}>{PLAN_NOTES[p.id]}</p>
+                    <button
+                      className={`${s.btn} ${s.btnBlue} ${s.btnBlock}`}
+                      onClick={() => openModal(p.id)}
+                    >
+                      Get started →
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+            <p className={s.pricingNote}>
+              Live Monday to Friday, 45 minutes. Taught by <b>Ankit Mishra</b>, 500-hour certified, 5 years of experience.
+            </p>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className={s.sect} id="faq" style={{ paddingTop: 20 }}>
+          <div className={s.wrap}>
+            <div className={`${s.headC} ${rv}`}>
+              <span className={s.pill}>FAQ</span>
+              <h2 className={s.h2}>Questions, answered</h2>
+            </div>
+            <div className={`${s.faq} ${rv}`}>
+              {FAQS.map((f, i) => (
+                <details key={f.q} open={i === 0}>
+                  <summary>
+                    <span className={s.faqQ}>{f.q}</span>
+                    <span className={s.faqToggle}>+</span>
+                  </summary>
+                  <p className={s.faqA}>{f.a}</p>
+                </details>
+              ))}
+            </div>
+            <p className={s.disclaimer}>
+              For general wellness. Not a substitute for medical advice. Please check with your doctor if you have a medical condition.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      {/* Final CTA + footer */}
+      <div className={s.finalWrap}>
+        <div className={s.finalCard}>
+          <div className={`${s.finalHead} ${rv}`}>
+            <h2 className={s.h2}>It's never too late to feel this good.</h2>
+            <p className={s.finalSub}>
+              Your first 14 days are on us. No pressure, no commitment.
+            </p>
+            <div className={s.finalActions}>
+              <button className={`${s.btn} ${s.btnBlue} ${s.btnLg}`} onClick={() => openModal()}>
+                Claim My Free Trial
+              </button>
+              <a href="#pricing" className={`${s.btn} ${s.btnOutline} ${s.btnLg}`}>
+                View Plans
+              </a>
+            </div>
+          </div>
+
+          <footer className={s.footerCard}>
+            <div className={s.footerTop}>
+              <div>
+                <a href="#top" className={s.brand}>
+                  <Lotus /> Sacred Pause
+                </a>
+                <p className={s.footerSub}>Gentle, guided live yoga for adults 35+.</p>
+              </div>
+              <div className={s.footerLinks}>
+                <div>
+                  <div className={s.footerTitle}>Program</div>
+                  <a className={s.footerLink} href="#pricing">Pricing</a>
+                  <a className={s.footerLink} href="#faq">FAQ</a>
+                </div>
+                <div>
+                  <div className={s.footerTitle}>Sacred Pause</div>
+                  <Link className={s.footerLink} href="/">Yoga Retreats</Link>
+                  <Link className={s.footerLink} href="/about">About Us</Link>
+                  <Link className={s.footerLink} href="/contact">Contact Us</Link>
+                </div>
+              </div>
+            </div>
+            <div className={s.footerDivider} />
+            <div className={s.footerBottom}>
+              <span>© {new Date().getFullYear()} Sacred Pause</span>
+              <span>
+                <Link className={s.footerLink} style={{ display: "inline" }} href="/privacy">Privacy</Link>
+                {" · "}
+                <Link className={s.footerLink} style={{ display: "inline" }} href="/terms">Terms</Link>
+                {" · "}
+                <Link className={s.footerLink} style={{ display: "inline" }} href="/cancellation">Cancellation Policy</Link>
+                {" · "}
+                <a className={s.footerLink} style={{ display: "inline" }} href="#top">Back to top ↑</a>
+              </span>
+            </div>
+          </footer>
+        </div>
+      </div>
 
       {/* Sticky mobile CTA */}
-      <button onClick={() => openModal()} className="sm:hidden fixed bottom-0 inset-x-0 z-10 urbanist bg-[#E4A689] text-[#172525] text-center font-bold p-4 shadow-[0_-4px_16px_rgba(0,0,0,0.25)]">
-        Start Free 14-Day Trial
-      </button>
+      <div className={s.sticky}>
+        <button className={`${s.btn} ${s.btnBlue} ${s.btnLg}`} onClick={() => openModal()}>
+          Book Your Free Trial Class
+        </button>
+      </div>
+
+      <a
+        className={s.wa}
+        href="https://api.whatsapp.com/send/?phone=919065550642&text=Hi%20Sacred%20Pause,%20I%20want%20to%20know%20more%20about%20the%20online%20yoga%20classes"
+        aria-label="Chat on WhatsApp"
+      >
+        <img alt="contact us on whatsapp" src="/WhatsApp.webp" />
+      </a>
 
       <YogaModal open={modal.open} initialPlan={modal.plan} skipPlanStep={modal.skipPlanStep} onClose={closeModal} />
-
-      <div className="fixed bottom-16 sm:bottom-2 right-2">
-        <a href="https://api.whatsapp.com/send/?phone=919065550642&text=Hi%20Sacred%20Pause,%20I%20want%20to%20know%20more%20about%20the%20online%20yoga%20classes">
-          <img alt="contact us on whatsapp" src="/WhatsApp.webp" className="w-[50px] hover:scale-150" />
-        </a>
-      </div>
-    </>
+    </div>
   );
 }

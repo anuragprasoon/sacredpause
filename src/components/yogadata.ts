@@ -16,34 +16,26 @@ export const BATCHES = {
 export const FAQS = [
   {
     q: "How does the 14-day free trial work?",
-    a: "Register in under a minute, pick your preferred batch and join our live classes free for 14 days. No payment is needed to register. Our team will message you on WhatsApp with your access details, and before the trial ends we'll share the plans if you'd like to continue.",
+    a: "Register in under a minute and join our live classes free for 14 days. No payment is needed to register. We'll message you on WhatsApp with access details, and share plans before the trial ends.",
   },
   {
-    q: "Who should be taking our program?",
-    a: "Our program is designed for 35+ professionals and for parents aged 45–60 who want a gentle, guided and consistent yoga routine from home.",
-  },
-  {
-    q: "How many classes are there in a month, and how many batches?",
-    a: "Classes are 45 minutes long, 5 days a week, in a small live group. Saturday is a group discussion / doubts session. You can pick from 6 daily batches: mornings at 6:30, 7:30 and 8:30 AM, and evenings at 5:00, 6:00 and 7:00 PM.",
+    q: "Is yoga safe at my age? What about back or knee pain?",
+    a: "Yes. Classes are designed for adults 35+, with gentler options for joints, strength and balance. For back pain, knee pain or high blood pressure, check with your doctor first and tell your teacher.",
   },
   {
     q: "What if I miss a class?",
-    a: "Please don't worry at all! One of the biggest perks of our online studio is that you never truly miss a class. The HD recording of every session is uploaded to your member dashboard, so you can practise whenever it suits you. You can also simply join any of our other daily live batches at no extra cost. And if you miss all the live batches for the day, your WhatsApp tracking keeps your habit streak alive as long as you log back in the next available day.",
+    a: "Every session is recorded in HD and added to your dashboard, so you can practise anytime. You can also join any other live batch that day at no extra cost.",
   },
   {
-    q: "Who will be teaching?",
-    a: "Ankit Mishra, a certified 500-hour yoga teacher with 5 years of experience.",
+    q: "What are the class timings?",
+    a: "45 minutes, Monday to Friday, with a Saturday doubts session. Mornings at 6:30, 7:30 and 8:30 AM; evenings at 5:00, 6:00 and 7:00 PM. You just need a mat, comfortable clothes and a chair or wall for support.",
   },
   {
-    q: "Why is it priced at just ₹399 a month?",
-    a: "You get unlimited live and recorded classes (every live stream plus a 24x7 replay library), expert instruction with real-time posture correction and safety feedback from a live instructor who sees your camera, and a premium studio experience in your living room with zero commute. It works out to about ₹13 a day, less than the cost of a coffee.",
-  },
-  {
-    q: "What if I didn't get the value? (Refund & cancellation)",
-    a: "All services are non-refundable by default. However, if you are not satisfied, a refund can be provided if you tell us by email (sacredpause@gmail.com) or on WhatsApp (+91 90655 50642) within 3 days of getting access. Refunds are processed within 5 to 7 working days from the time you notify us. In the unlikely event of defective or unsatisfactory service, you can also request an extension/replacement within the same 3 days.",
+    q: "What if I don't get the value? (Refund)",
+    a: "Services are non-refundable by default, but if you're not satisfied, message us on WhatsApp (+91 90655 50642) or email sacredpause@gmail.com within 3 days of getting access. Refunds are processed in 5 to 7 working days.",
   },
   {
     q: "What is the Parents Care Pack?",
-    a: "An add-on for the 3-month and 6-month plans that includes a live dietician Q&A, built for the parents in your life.",
+    a: "An add-on for the 3-month and 6-month plans that includes a live dietician Q&A, made for the parents in your life.",
   },
 ];

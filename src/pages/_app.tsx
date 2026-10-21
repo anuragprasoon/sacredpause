@@ -6,6 +6,7 @@ import { Urbanist } from "next/font/google";
 import { useState, useEffect } from "react";
 import Load from "@/components/loading";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 const urbanist = Urbanist({
   subsets: ['latin'],
@@ -18,6 +19,7 @@ const urbanist = Urbanist({
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isLoad, setIsLoad] = useState(true)
+  const { pathname } = useRouter();
 
   useEffect(()=>{
     setTimeout(()=>{
@@ -25,6 +27,11 @@ export default function App({ Component, pageProps }: AppProps) {
     },3000)
 
   },[])
+
+  // /yoga is a standalone landing page with its own nav, footer and fonts.
+  if (pathname === "/yoga") {
+    return <Component {...pageProps} />;
+  }
   return(
     <div className={urbanist.className}>
     {isLoad? <Load/>: 
