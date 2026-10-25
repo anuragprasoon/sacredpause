@@ -8,31 +8,39 @@ export const PLANS = [
   { id: "12-months", label: "12 Months", price: 3699, perDay: "10.13", careAddOn: null },
 ];
 
+// Live class slots (IST). `h`/`m` are 24-hour values used by the hero countdown.
+export const SLOTS = [
+  { label: "6:30 AM", h: 6, m: 30 },
+  { label: "7:30 AM", h: 7, m: 30 },
+  { label: "8:30 PM", h: 20, m: 30 },
+  { label: "9:30 PM", h: 21, m: 30 },
+];
+
 export const BATCHES = {
-  Morning: ["6:30 AM", "7:30 AM", "8:30 AM"],
-  Evening: ["5:00 PM", "6:00 PM", "7:00 PM"],
+  Morning: ["6:30 AM", "7:30 AM"],
+  Evening: ["8:30 PM", "9:30 PM"],
 };
 
 export const FAQS = [
   {
     q: "How does the 14-day free trial work?",
-    a: "Register in under a minute and join our live classes free for 14 days. No payment is needed to register. We'll message you on WhatsApp with access details, and share plans before the trial ends.",
+    a: "Register in under a minute and join our live classes free for 14 days. No payment is needed to register. We'll message you on WhatsApp with your access details, and share the plans before the trial ends.",
   },
   {
-    q: "Is yoga safe at my age? What about back or knee pain?",
-    a: "Yes. Classes are designed for adults 35+, with gentler options for joints, strength and balance. For back pain, knee pain or high blood pressure, check with your doctor first and tell your teacher.",
+    q: "Is yoga safe for me? What about back or knee pain?",
+    a: "Yes. Every pose comes with an easy and an advanced version, so you can go at your own pace. If you have back pain, knee pain or high blood pressure, please check with your doctor first and let your teacher know.",
   },
   {
     q: "What if I miss a class?",
-    a: "Every session is recorded in HD and added to your dashboard, so you can practise anytime. You can also join any other live batch that day at no extra cost.",
+    a: "Please don't worry! The recording of every class is uploaded to your member dashboard, so you can practise whenever it suits you. You can also join another live slot that day at no extra cost.",
   },
   {
     q: "What are the class timings?",
-    a: "45 minutes, Monday to Friday, with a Saturday doubts session. Mornings at 6:30, 7:30 and 8:30 AM; evenings at 5:00, 6:00 and 7:00 PM. You just need a mat, comfortable clothes and a chair or wall for support.",
+    a: "Live classes run at 6:30 AM, 7:30 AM, 8:30 PM and 9:30 PM IST. Pick the slot that suits you and switch whenever you like at no extra cost.",
   },
   {
-    q: "What if I don't get the value? (Refund)",
-    a: "Services are non-refundable by default, but if you're not satisfied, message us on WhatsApp (+91 90655 50642) or email sacredpause@gmail.com within 3 days of getting access. Refunds are processed in 5 to 7 working days.",
+    q: "What if I don't get the value? (Refund & cancellation)",
+    a: "Services are non-refundable by default, but if you're not satisfied, message us on WhatsApp (+91 90655 50642) or email sacredpause@gmail.com within 3 days of getting access. Refunds are processed within 5 to 7 working days.",
   },
   {
     q: "What is the Parents Care Pack?",

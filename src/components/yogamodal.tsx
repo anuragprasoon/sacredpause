@@ -83,7 +83,7 @@ const YogaModal: React.FC<Props> = ({ open, initialPlan, skipPlanStep, onClose }
               aria-pressed={plan === TRIAL_ID}
               className={`${s.planOpt} ${s.planTrial} ${plan === TRIAL_ID ? s.planSel : ""}`}
             >
-              <span className={s.planTag}>RECOMMENDED · FREE</span>
+              <span className={s.planTag}>FREE TRIAL</span>
               <span>
                 <span className={s.planName} style={{ display: "block" }}>14-Day Free Trial</span>
                 <span className={s.planSmall}>Full access to live classes. No payment to register.</span>
@@ -97,8 +97,9 @@ const YogaModal: React.FC<Props> = ({ open, initialPlan, skipPlanStep, onClose }
                 key={p.id}
                 onClick={() => pick(p.id)}
                 aria-pressed={plan === p.id}
-                className={`${s.planOpt} ${plan === p.id ? s.planSel : ""}`}
+                className={`${s.planOpt} ${plan === p.id ? s.planSel : ""} ${p.id === "1-month" ? s.planRec : ""}`}
               >
+                {p.id === "1-month" && <span className={s.planTag}>RECOMMENDED</span>}
                 <span>
                   <span className={s.planName} style={{ display: "block" }}>{p.label}</span>
                   <span className={s.planSmall}>₹{p.perDay} / day</span>
@@ -109,7 +110,7 @@ const YogaModal: React.FC<Props> = ({ open, initialPlan, skipPlanStep, onClose }
 
             <div className={s.modalFoot}>
               <button onClick={() => setStep("details")} className={`${s.btn} ${s.btnBlue} ${s.btnLg} ${s.btnBlock}`}>
-                Next · {isTrial ? "Start Free Trial" : selected.label}
+                Next
               </button>
             </div>
           </div>
@@ -143,7 +144,7 @@ const YogaModal: React.FC<Props> = ({ open, initialPlan, skipPlanStep, onClose }
                 ))}
               </select>
               <button type="submit" className={`${s.btn} ${s.btnBlue} ${s.btnLg} ${s.btnBlock}`}>
-                {isTrial ? "Start My Free Trial on WhatsApp" : "Reserve My Spot on WhatsApp"}
+                Book Now
               </button>
             </form>
           </div>

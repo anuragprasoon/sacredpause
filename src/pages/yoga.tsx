@@ -1,67 +1,90 @@
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
-import { Inter, Inter_Tight } from "next/font/google";
+import { Inter, Fraunces, Caveat } from "next/font/google";
 import YogaModal from "@/components/yogamodal";
 import { PLANS, FAQS, TRIAL_ID } from "@/components/yogadata";
 import s from "@/styles/yoga.module.css";
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-inter", display: "swap" });
-const tight = Inter_Tight({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-tight", display: "swap" });
+const serif = Fraunces({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--font-serif", display: "swap" });
+const hand = Caveat({ subsets: ["latin"], weight: ["500", "700"], variable: "--font-hand", display: "swap" });
 
-const TITLE = "Yoga for 35+ | Gentle Live Online Classes | Free 14-Day Trial | Sacred Pause";
-const DESC =
-  "Gentle, guided live yoga for adults 35+. Less stiffness, better sleep, more energy. Try 14 days free. 45-minute classes, 5 days a week, with a certified 500-hour teacher.";
+const TITLE = "Yoga seekho. Sahi tareeke se. Roz. | Live Yoga Classes | Sacred Pause";
+const DESC = "Live teacher har pose sikhata hai. Ghar se, phone pe, sirf 20 minute. 14 din free trial, refund ek message pe.";
 
-const PAIN_LEFT = [
-  "You wake up stiff, and your back and knees take a while to “start working.”",
-  "Hours at a desk have left you with a sore neck and an aching lower back.",
-];
-const PAIN_RIGHT = [
-  "You're tired all day but wide awake at 2 a.m.",
-  "The gym feels intimidating, and high-intensity workouts feel risky now.",
-];
+const CTA = "Book your class for Free Now";
 
-const BENEFITS: [string, string, string][] = [
-  ["Ease aches and stiffness", "Gentle mobility for back, neck, hips and knees.", "M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5"],
-  ["Sleep deeply again", "Calming breathwork to wind down at night.", "M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"],
-  ["Less stress", "Simple ways to settle a racing mind.", "M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"],
-  ["Strength and balance", "Stay steady and independent every day.", "M6.5 6.5v11M17.5 6.5v11M3 9v6M21 9v6M6.5 12h11"],
+const STEPS: [string, string, string][] = [
+  ["Slot chuno", "6:30 AM · 7:30 AM · 8:30 PM · 9:30 PM", "M12 8v4l3 2M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"],
+  ["Join karo", "Phone ya TV pe.", "M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zM11 18h2"],
+  ["Yoga with Us", "Class khatam, din shuru.", "M12 21v-9M12 12C12 8 9 6 5 6c0 4 3 6 7 6M12 15c0-3 2.5-5 7-5 0 4-3 5-7 5"],
 ];
 
-const PROFESSIONALS = [
-  "45-minute live classes, morning and evening",
-  "Desk-friendly neck, shoulder and back relief",
-  "Quick stress resets between calls",
-];
-const RETIRED = [
-  "Slower pace with chair and wall support",
-  "Joint health, balance and flexibility",
-  "Saturday group session to meet people",
+const PROBLEMS: [string, string, string, string][] = [
+  ["M7 3v9h10M7 12v9M17 12v9", "Gardan & Kamar", "Desk job wale", "/yoga/neck-back"],
+  ["M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z", "Neend & Stress", "Raat ko dimaag band nahi hota", "/yoga/sleep-stress"],
+  ["M12 4v16M6 8h12M6 8l-3 6a3 3 0 0 0 6 0L6 8zM18 8l-3 6a3 3 0 0 0 6 0l-3-6z", "Pet & Weight", "Gym chhoot gaya", "/yoga/belly-weight"],
+  ["M12 21v-9M12 12C12 8 9 6 5 6c0 4 3 6 7 6M12 15c0-3 2.5-5 7-5 0 4-3 5-7 5", "Zero Se Shuru", "Kabhi yoga nahi kiya", "/yoga/beginner"],
 ];
 
-const PLAN_NOTES: Record<string, string> = {
-  "1-month": "A simple way to start.",
-  "3-months": "Build a routine. Parents Care Pack +₹1,499.",
-  "6-months": "Lower daily cost. Parents Care Pack +₹2,499.",
-  "12-months": "Best value for a full year.",
-};
+// TODO: replace the placeholder portraits with real member photos (put files in /public and use "/name.jpg").
+const TESTIMONIALS: { q: string; name: string; role: string; photo: string }[] = [
+  { q: "3 hafte mein gardan ka dard 70% kam.", name: "Rohit", role: "Software Engineer, Pune", photo: "https://i.pravatar.cc/160?img=12" },
+  { q: "Bachon ka tiffin dene ke baad, 7:30 wali class meri apni 20 minute hai.", name: "Sunita", role: "Teacher, Jaipur", photo: "https://i.pravatar.cc/160?img=47" },
+  { q: "Gym chorha, yeh pakda. 6 kg kam.", name: "Amit", role: "Sales Manager, Lucknow", photo: "https://i.pravatar.cc/160?img=33" },
+];
 
-const Check = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
-    <circle cx="12" cy="12" r="11" fill="#0E9272" />
-    <path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
+const Logo = () => <img src="/logo.png" alt="Sacred Pause" className={s.logo} width={84} height={50} />;
 
-const Lotus = () => <img src="/logo.png" alt="Sacred Pause" className={s.logo} />;
+const BASE_MONTHLY = 399;
+const MONTHS: Record<string, number> = { "1-month": 1, "3-months": 3, "6-months": 6, "12-months": 12 };
+
+const dly = (i: number) => ({ "--d": i } as React.CSSProperties);
 
 export default function Yoga() {
   const [modal, setModal] = useState({ open: false, plan: TRIAL_ID, skipPlanStep: false });
   const openModal = (planId?: string) => setModal({ open: true, plan: planId ?? TRIAL_ID, skipPlanStep: Boolean(planId) });
   const closeModal = useCallback(() => setModal((m) => ({ ...m, open: false })), []);
 
-  // Scroll-reveal, same idea as the reference site's .rv / .in
+  const [faqOpen, setFaqOpen] = useState<number | null>(0);
+  const [heroInView, setHeroInView] = useState(true);
+  const heroRef = useRef<HTMLElement>(null);
+  const barRef = useRef<HTMLDivElement>(null);
+  const picRef = useRef<HTMLDivElement>(null);
+
+  // Sticky bar appears once the hero scrolls out of view
+  useEffect(() => {
+    const el = heroRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => setHeroInView(e.isIntersecting), { threshold: 0 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  // Scroll motion: progress bar + gentle hero-image parallax (no re-renders)
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const y = window.scrollY;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      if (barRef.current) barRef.current.style.transform = `scaleX(${max > 0 ? Math.min(y / max, 1) : 0})`;
+      if (picRef.current) picRef.current.style.transform = `translateY(${Math.min(y, 600) * 0.06}px)`;
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  // Scroll-reveal
   useEffect(() => {
     const els = document.querySelectorAll<HTMLElement>(`.${s.rv}`);
     const io = new IntersectionObserver(
@@ -72,7 +95,7 @@ export default function Yoga() {
             io.unobserve(e.target);
           }
         }),
-      { threshold: 0.12 }
+      { threshold: 0.15, rootMargin: "0px 0px -6% 0px" }
     );
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
@@ -81,11 +104,10 @@ export default function Yoga() {
   const rv = s.rv;
 
   return (
-    <div className={`${s.root} ${inter.variable} ${tight.variable}`}>
+    <div className={`${s.root} ${inter.variable} ${serif.variable} ${hand.variable}`}>
       <Head>
         <title>{TITLE}</title>
         <meta name="description" content={DESC} />
-        <meta name="keywords" content="yoga for 35+, yoga for seniors, online yoga classes india, yoga for back pain, yoga for retired, live yoga" />
         <meta name="author" content="Sacred Pause" />
         <meta property="og:title" content={TITLE} />
         <meta property="og:description" content={DESC} />
@@ -99,14 +121,17 @@ export default function Yoga() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <div className={s.progress} aria-hidden>
+        <div className={s.progressBar} ref={barRef} />
+      </div>
+
       <div className={s.sheet} id="top">
         {/* Nav */}
         <nav className={s.nav}>
           <a href="#top" className={s.brand}>
-            <Lotus /> Sacred Pause
+            <Logo /> Sacred Pause
           </a>
           <div className={s.navLinks}>
-            <a href="#benefits">Benefits</a>
             <a href="#pricing">Pricing</a>
             <a href="#faq">FAQ</a>
           </div>
@@ -120,209 +145,218 @@ export default function Yoga() {
 
         {/* Hero */}
         <div className={s.heroFrame}>
-          <header className={s.hero}>
-            <span className={s.heroBadge}>14 days free · No payment to register</span>
-            <h1>
-              Your body has carried you this far. Let's help it <span className={s.accent}>go further.</span>
-            </h1>
-            <p className={s.heroSub}>
-              Gentle, guided live yoga for people 35+. Less stiffness, better sleep, more energy.
-            </p>
-            <div className={s.heroCta}>
-              <button className={`${s.btn} ${s.btnBlue} ${s.btnLg}`} onClick={() => openModal()}>
-                Book Your Free Trial Class
-              </button>
-              <a href="#pricing" className={`${s.btn} ${s.btnGhost} ${s.btnLg}`}>
-                View Plans
-              </a>
-            </div>
-            <p className={s.heroFine}>No experience or flexibility needed. Options for every body.</p>
-            <div className={s.heroPicWrap}>
-              <img className={s.heroPic} src="https://images.pexels.com/photos/3576284/pexels-photo-3576284.jpeg" alt="Meditating outdoors" />
-              <span className={`${s.chip} ${s.chipA}`}><i className={s.chipDot} /> Live · 45 min</span>
-              <span className={`${s.chip} ${s.chipB}`}>🌿 14 days free</span>
+          <header className={s.hero} ref={heroRef}>
+            <div className={s.heroGrid}>
+              <div className={s.heroText}>
+                <span className={s.heroBadge}>14 Days free trial</span>
+                <h1>
+                  Yoga seekho. Ghar baithe.{" "}
+                  <span className={s.accent}>
+                    Roz.
+                    <svg className={s.squiggle} viewBox="0 0 120 14" preserveAspectRatio="none" aria-hidden>
+                      <path d="M3 9 C 18 2, 32 14, 50 7 S 88 3, 117 9" />
+                    </svg>
+                  </span>
+                </h1>
+                <p className={s.heroSub}>Learn yoga with a real teacher. From home. Daily.</p>
+                <div className={s.heroCta}>
+                  <button className={`${s.btn} ${s.btnBlue} ${s.btnLg}`} onClick={() => openModal()}>
+                    {CTA}
+                  </button>
+                  <span className={s.note}>
+                    <svg className={s.noteArrow} viewBox="0 0 70 50" fill="none" aria-hidden>
+                      <path d="M66 6 C 46 4, 20 12, 10 40" />
+                      <path d="M3 30 L10 41 L21 34" />
+                    </svg>
+                    pehle 14 din free
+                  </span>
+                </div>
+              </div>
+
+              <div className={s.heroArt} ref={picRef}>
+                <span className={s.blob} aria-hidden />
+                <img
+                  className={s.heroPic}
+                  src="https://images.pexels.com/photos/3576284/pexels-photo-3576284.jpeg?auto=compress&cs=tinysrgb&w=900"
+                  alt="Ghar par yoga"
+                  width={520}
+                  height={640}
+                />
+                <span className={s.sticker}>
+                  Live
+                  <br />
+                  teacher
+                </span>
+              </div>
             </div>
           </header>
         </div>
 
-        {/* Problem */}
+        {/* How to get started: a winding path */}
         <section className={s.sect}>
           <div className={s.wrap}>
-            <div className={`${s.headC} ${rv}`}>
-              <span className={s.pill}>Sound familiar?</span>
-              <h2 className={s.h2}>Your body is asking for a different kind of care</h2>
+            <div className={`${s.headL} ${rv}`}>
+              <span className={s.script}>easy as 1-2-3</span>
+              <h2 className={s.h2}>How to get started</h2>
             </div>
-            <div className={`${s.painStage} ${rv}`}>
-              <div className={s.painCol}>
-                {PAIN_LEFT.map((t) => (
-                  <div key={t} className={s.painCard}>{t}</div>
-                ))}
-              </div>
-              <img className={s.painPhoto} src="https://images.pexels.com/photos/3820380/pexels-photo-3820380.jpeg" alt="Feeling stiff and tired" />
-              <div className={s.painCol}>
-                {PAIN_RIGHT.map((t) => (
-                  <div key={t} className={s.painCard}>{t}</div>
-                ))}
-              </div>
-            </div>
-            <div className={`${s.painNote} ${rv}`}>
-              <span className={s.heart}>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden>
-                  <path d="M12 21s-7.5-4.6-9.6-9.3C.9 8.2 3 4.5 6.6 4.5c2 0 3.7 1.1 4.4 2.7.7-1.6 2.4-2.7 4.4-2.7 3.6 0 5.7 3.7 4.2 7.2C19.5 16.4 12 21 12 21z" />
-                </svg>
-              </span>
-              It doesn't have to be this way.
-            </div>
-          </div>
-        </section>
-
-        {/* Benefits */}
-        <section id="benefits">
-          <div className={s.outFrame}>
-            <div className={`${s.headC} ${rv}`} style={{ marginBottom: 40 }}>
-              <span className={`${s.pill} ${s.outPill}`}>Benefits</span>
-              <h2 className={s.h2}>Gentle yoga, real results</h2>
-            </div>
-            <div className={s.outGrid}>
-              {BENEFITS.map(([t, d, icon]) => (
-                <div key={t} className={`${s.outCard} ${rv}`}>
-                  <div className={s.outIcon}>
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0E9272" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <div className={s.path}>
+              <svg className={s.pathLine} viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden>
+                <path d="M167 60 C 300 -10, 380 170, 500 130 S 720 0, 833 60" />
+              </svg>
+              {STEPS.map(([t, d, icon], i) => (
+                <div key={t} className={`${s.step} ${i === 1 ? s.stepLow : ""} ${rv}`} style={dly(i)}>
+                  <div className={s.stepIcon}>
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#17401C" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                       <path d={icon} />
                     </svg>
+                    <span className={s.stepNo}>{i + 1}</span>
                   </div>
                   <h3 className={s.h3}>{t}</h3>
                   <p>{d}</p>
                 </div>
               ))}
             </div>
-            <div style={{ textAlign: "center", margin: "32px 0 18px" }}>
+            <div className={`${s.sectionCta} ${rv}`}>
               <button className={`${s.btn} ${s.btnBlue} ${s.btnLg}`} onClick={() => openModal()}>
-                Book Your Free Trial Class
+                {CTA}
               </button>
             </div>
           </div>
         </section>
 
-        {/* Who it's for */}
-        <section className={s.sect}>
+        {/* Pick your problem */}
+        <section className={s.sect} style={{ paddingTop: 0 }}>
           <div className={s.wrap}>
-            <div className={`${s.headC} ${rv}`}>
-              <span className={s.pill}>Who it's for</span>
-              <h2 className={s.h2}>Made for the stage of life you're in</h2>
+            <div className={`${s.headL} ${rv}`}>
+              <span className={s.script}>apna wala chuno</span>
+              <h2 className={s.h2}>Aapko kya theek karna hai?</h2>
             </div>
-            <div className={s.twoCol}>
-              <div className={`${s.track} ${rv}`}>
-                <h3 className={s.h3} style={{ fontSize: 24 }}>For Working Professionals</h3>
-                <p className={s.trackQuote}>“I don't have hours. I just need to feel better.”</p>
-                <ul className={s.checks}>
-                  {PROFESSIONALS.map((t) => (
-                    <li key={t}><Check /> {t}</li>
-                  ))}
-                </ul>
-              </div>
-              <div className={`${s.track} ${rv}`}>
-                <h3 className={s.h3} style={{ fontSize: 24 }}>For Retired and Semi-Retired Adults</h3>
-                <p className={s.trackQuote}>“I have the time. I want to use it well.”</p>
-                <ul className={s.checks}>
-                  {RETIRED.map((t) => (
-                    <li key={t}><Check /> {t}</li>
-                  ))}
-                </ul>
-              </div>
+            <div className={s.problemGrid}>
+              {PROBLEMS.map(([icon, t, sub, href], i) => (
+                <Link key={t} href={href} className={`${s.problemCard} ${s[`tone${i}`]} ${rv}`} style={dly(i)}>
+                  <span className={s.problemIcon}>
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#17401C" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                      <path d={icon} />
+                    </svg>
+                  </span>
+                  <span>
+                    <b className={s.problemTitle}>{t}</b>
+                    <span className={s.problemSub}>{sub}</span>
+                  </span>
+                  <span className={s.problemArrow} aria-hidden>→</span>
+                </Link>
+              ))}
             </div>
+            <div className={`${s.sectionCta} ${rv}`}>
+              <button className={`${s.btn} ${s.btnBlue} ${s.btnLg}`} onClick={() => openModal()}>
+                {CTA}
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* Proof */}
+        <section className={s.proofFrame}>
+          <div className={`${s.headC} ${rv}`} style={{ marginBottom: 36 }}>
+            <h2 className={s.h2}>Here's what our members say</h2>
+          </div>
+          <div className={s.testiRow}>
+            {TESTIMONIALS.map((t, i) => (
+              <figure key={t.name} className={`${s.testi} ${s[`tilt${i}`]} ${rv}`} style={dly(i)}>
+                <span className={s.quoteMark} aria-hidden>“</span>
+                <blockquote>{t.q}</blockquote>
+                <div className={s.testiHead}>
+                  <span className={s.avatar}>
+                    {t.name[0]}
+                    <img src={t.photo} alt={t.name} width={56} height={56} loading="lazy" />
+                  </span>
+                  <figcaption>
+                    <b>{t.name}</b>
+                    <span>{t.role}</span>
+                  </figcaption>
+                </div>
+              </figure>
+            ))}
+          </div>
+          <div className={`${s.proofCta} ${rv}`}>
+            <button className={`${s.btn} ${s.btnBlue} ${s.btnLg}`} onClick={() => openModal()}>
+              {CTA}
+            </button>
           </div>
         </section>
 
         {/* Pricing */}
-        <section className={s.sect} id="pricing" style={{ paddingTop: 20 }}>
-          <div className={s.wrap} style={{ maxWidth: 1100 }}>
-            <div className={`${s.headC} ${rv}`}>
-              <span className={s.pill}>Programs</span>
-              <h2 className={s.h2}>Find the plan that fits your life</h2>
-              <p className={s.lede}>Unlimited live and recorded classes on every plan.</p>
-            </div>
-
-            <div className={`${s.trialCard} ${rv}`}>
-              <div>
-                <span className={s.heroBadge}>Limited-time offer</span>
-                <h3 className={s.h3}>14-Day Free Trial</h3>
-                <p>Full access to live classes and recordings. No payment to register.</p>
+        <section className={s.sect} id="pricing">
+          <div className={s.wrap}>
+            <div className={`${s.plansPanel} ${rv}`}>
+              <h2 className={s.h2}>Membership Plans</h2>
+              <p className={s.plansSub}>All plans start after free trial.</p>
+              <div className={s.planRows}>
+                {PLANS.filter((p) => p.id !== TRIAL_ID && p.id !== "1-month").map((p) => {
+                  const off = Math.round(((BASE_MONTHLY * MONTHS[p.id] - p.price) / (BASE_MONTHLY * MONTHS[p.id])) * 100);
+                  return (
+                    <button key={p.id} className={s.planRow} onClick={() => openModal(p.id)}>
+                      <span>
+                        <b className={s.planRowName}>{MONTHS[p.id]} Months</b>
+                        <span className={s.planRowOff}>{off}% Off</span>
+                      </span>
+                      <span className={s.planRowPrice}>
+                        ₹{p.price.toLocaleString("en-IN")}
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                          <path d="M9 6l6 6-6 6" />
+                        </svg>
+                      </span>
+                    </button>
+                  );
+                })}
               </div>
-              <button className={`${s.btn} ${s.btnBlue} ${s.btnLg}`} onClick={() => openModal()}>
-                Start Free Trial
+              <button className={`${s.btn} ${s.btnBlue} ${s.btnLg} ${s.plansCta}`} onClick={() => openModal()}>
+                Choose your plan →
               </button>
             </div>
-
-            <div className={s.pricingGrid}>
-              {PLANS.filter((p) => p.id !== TRIAL_ID).map((p) => {
-                const featured = p.id === "3-months";
-                return (
-                  <div key={p.id} className={`${s.pCard} ${featured ? s.pFeatured : ""} ${rv}`}>
-                    <div>
-                      <span className={s.pName}>{p.label}</span>
-                      {featured && <span className={s.pBadge}>Popular</span>}
-                    </div>
-                    <div className={s.pPrice}>₹{p.price.toLocaleString("en-IN")}</div>
-                    <div className={s.pPer}>₹{p.perDay} / day</div>
-                    <div className={s.pDivider} />
-                    <p className={s.pNote}>{PLAN_NOTES[p.id]}</p>
-                    <button
-                      className={`${s.btn} ${s.btnBlue} ${s.btnBlock}`}
-                      onClick={() => openModal(p.id)}
-                    >
-                      Get started →
-                    </button>
-                  </div>
-                );
-              })}
-            </div>
-            <p className={s.pricingNote}>
-              Live Monday to Friday, 45 minutes. Taught by <b>Ankit Mishra</b>, 500-hour certified, 5 years of experience.
-            </p>
           </div>
         </section>
 
         {/* FAQ */}
-        <section className={s.sect} id="faq" style={{ paddingTop: 20 }}>
+        <section className={s.sect} id="faq" style={{ paddingTop: 0 }}>
           <div className={s.wrap}>
-            <div className={`${s.headC} ${rv}`}>
-              <span className={s.pill}>FAQ</span>
-              <h2 className={s.h2}>Questions, answered</h2>
+            <div className={`${s.headC} ${rv}`} style={{ marginBottom: 32 }}>
+              <h2 className={s.h2}>Frequently asked questions</h2>
             </div>
             <div className={`${s.faq} ${rv}`}>
               {FAQS.map((f, i) => (
-                <details key={f.q} open={i === 0}>
-                  <summary>
+                <details key={f.q} open={faqOpen === i}>
+                  <summary
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setFaqOpen(faqOpen === i ? null : i);
+                    }}
+                  >
                     <span className={s.faqQ}>{f.q}</span>
-                    <span className={s.faqToggle}>+</span>
+                    <span className={s.faqToggle} />
                   </summary>
                   <p className={s.faqA}>{f.a}</p>
                 </details>
               ))}
             </div>
-            <p className={s.disclaimer}>
-              For general wellness. Not a substitute for medical advice. Please check with your doctor if you have a medical condition.
-            </p>
           </div>
         </section>
       </div>
 
-      {/* Final CTA + footer */}
+      {/* Close + footer */}
       <div className={s.finalWrap}>
         <div className={s.finalCard}>
+          <span className={`${s.leaf} ${s.leafA}`} aria-hidden />
+          <span className={`${s.leaf} ${s.leafB}`} aria-hidden />
           <div className={`${s.finalHead} ${rv}`}>
-            <h2 className={s.h2}>It's never too late to feel this good.</h2>
-            <p className={s.finalSub}>
-              Your first 14 days are on us. No pressure, no commitment.
-            </p>
+            <h2 className={s.h2}>
+              Kal se nahi. <span className={s.accent}>Aaj se.</span>
+            </h2>
+            <p className={s.finalSub}>14 din free mein shuru karo. Slot pasand na aaye, toh kabhi bhi badal lo.</p>
             <div className={s.finalActions}>
               <button className={`${s.btn} ${s.btnBlue} ${s.btnLg}`} onClick={() => openModal()}>
-                Claim My Free Trial
+                Book your class for Free Now
               </button>
-              <a href="#pricing" className={`${s.btn} ${s.btnOutline} ${s.btnLg}`}>
-                View Plans
-              </a>
             </div>
           </div>
 
@@ -330,9 +364,9 @@ export default function Yoga() {
             <div className={s.footerTop}>
               <div>
                 <a href="#top" className={s.brand}>
-                  <Lotus /> Sacred Pause
+                  <Logo /> Sacred Pause
                 </a>
-                <p className={s.footerSub}>Gentle, guided live yoga for adults 35+.</p>
+                <p className={s.footerSub}>Live yoga, ghar se. Roz.</p>
               </div>
               <div className={s.footerLinks}>
                 <div>
@@ -350,34 +384,32 @@ export default function Yoga() {
             </div>
             <div className={s.footerDivider} />
             <div className={s.footerBottom}>
-              <span>© {new Date().getFullYear()} Sacred Pause</span>
+              <span>© {new Date().getFullYear()} Sacred Pause · General wellness ke liye, medical advice nahi.</span>
               <span>
                 <Link className={s.footerLink} style={{ display: "inline" }} href="/privacy">Privacy</Link>
                 {" · "}
                 <Link className={s.footerLink} style={{ display: "inline" }} href="/terms">Terms</Link>
                 {" · "}
                 <Link className={s.footerLink} style={{ display: "inline" }} href="/cancellation">Cancellation Policy</Link>
-                {" · "}
-                <a className={s.footerLink} style={{ display: "inline" }} href="#top">Back to top ↑</a>
               </span>
             </div>
           </footer>
         </div>
       </div>
 
-      {/* Sticky mobile CTA */}
-      <div className={s.sticky}>
-        <button className={`${s.btn} ${s.btnBlue} ${s.btnLg}`} onClick={() => openModal()}>
-          Book Your Free Trial Class
+      {/* Sticky mobile CTA, shown once the hero scrolls out */}
+      <div className={`${s.sticky} ${!heroInView ? s.stickyShow : ""}`} aria-hidden={heroInView}>
+        <button className={`${s.btn} ${s.btnBlue} ${s.btnLg}`} onClick={() => openModal()} tabIndex={heroInView ? -1 : 0}>
+          {CTA}
         </button>
       </div>
 
       <a
-        className={s.wa}
+        className={`${s.wa} ${!heroInView ? s.waUp : ""}`}
         href="https://api.whatsapp.com/send/?phone=919065550642&text=Hi%20Sacred%20Pause,%20I%20want%20to%20know%20more%20about%20the%20online%20yoga%20classes"
         aria-label="Chat on WhatsApp"
       >
-        <img alt="contact us on whatsapp" src="/WhatsApp.webp" />
+        <img alt="" src="/WhatsApp.webp" width={50} height={50} loading="lazy" />
       </a>
 
       <YogaModal open={modal.open} initialPlan={modal.plan} skipPlanStep={modal.skipPlanStep} onClose={closeModal} />
