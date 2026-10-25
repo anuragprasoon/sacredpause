@@ -11,21 +11,21 @@ const serif = Fraunces({ subsets: ["latin"], weight: ["500", "600", "700"], vari
 const hand = Caveat({ subsets: ["latin"], weight: ["500", "700"], variable: "--font-hand", display: "swap" });
 
 const TITLE = "Yoga seekho. Sahi tareeke se. Roz. | Live Yoga Classes | Sacred Pause";
-const DESC = "Live teacher har pose sikhata hai. Ghar se, phone pe, sirf 20 minute. 14 din free trial, refund ek message pe.";
+const DESC = "Live teacher har pose sikhata hai. Ghar se, phone pe. 14 din free trial.";
 
 const CTA = "Book your class for Free Now";
 
 const STEPS: [string, string, string][] = [
   ["Slot chuno", "6:30 AM · 7:30 AM · 8:30 PM · 9:30 PM", "M12 8v4l3 2M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"],
   ["Join karo", "Phone ya TV pe.", "M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zM11 18h2"],
-  ["Yoga with Us", "Class khatam, din shuru.", "M12 21v-9M12 12C12 8 9 6 5 6c0 4 3 6 7 6M12 15c0-3 2.5-5 7-5 0 4-3 5-7 5"],
+  ["Yoga with Us", "Yoga karo sath me", "M12 21v-9M12 12C12 8 9 6 5 6c0 4 3 6 7 6M12 15c0-3 2.5-5 7-5 0 4-3 5-7 5"],
 ];
 
 const PROBLEMS: [string, string, string, string][] = [
-  ["M7 3v9h10M7 12v9M17 12v9", "Gardan & Kamar", "Desk job wale", "/yoga/neck-back"],
-  ["M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z", "Neend & Stress", "Raat ko dimaag band nahi hota", "/yoga/sleep-stress"],
-  ["M12 4v16M6 8h12M6 8l-3 6a3 3 0 0 0 6 0L6 8zM18 8l-3 6a3 3 0 0 0 6 0l-3-6z", "Pet & Weight", "Gym chhoot gaya", "/yoga/belly-weight"],
-  ["M12 21v-9M12 12C12 8 9 6 5 6c0 4 3 6 7 6M12 15c0-3 2.5-5 7-5 0 4-3 5-7 5", "Zero Se Shuru", "Kabhi yoga nahi kiya", "/yoga/beginner"],
+  ["M7 3v9h10M7 12v9M17 12v9", "Gardan & Kamar", "Desk job wale", "/yoga#pricing"],
+  ["M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z", "Neend & Stress", "Raat ko dimaag band nahi hota", "/yoga#pricing"],
+  ["M12 4v16M6 8h12M6 8l-3 6a3 3 0 0 0 6 0L6 8zM18 8l-3 6a3 3 0 0 0 6 0l-3-6z", "Pet & Weight", "Gym chhoot gaya", "/yoga#pricing"],
+  ["M12 21v-9M12 12C12 8 9 6 5 6c0 4 3 6 7 6M12 15c0-3 2.5-5 7-5 0 4-3 5-7 5", "Zero Se Shuru", "Kabhi yoga nahi kiya", "/yoga#pricing"],
 ];
 
 // TODO: replace the placeholder portraits with real member photos (put files in /public and use "/name.jpg").
